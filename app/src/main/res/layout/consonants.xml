@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/consonants_background">
+
+    <Button
+        android:id="@+id/button_sounds_beginning9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left"
+        android:text="Digraph-pairs ending"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/button_sounds_beginning"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_sounds_beginning"
+        app:layout_constraintTop_toBottomOf="@+id/button_sounds_beginning8" />
+
+    <Button
+        android:id="@+id/button_sounds_beginning8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left"
+        android:text="Digraph-pairs beginning"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/button_sounds_beginning"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_sounds_beginning"
+        app:layout_constraintTop_toBottomOf="@+id/button_sounds_beginning7" />
+
+    <Button
+        android:id="@+id/button_sounds_beginning7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left"
+        android:onClick="onClick"
+        android:text="Silent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/button_sounds_beginning"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_sounds_beginning"
+        app:layout_constraintTop_toBottomOf="@+id/button_sounds_beginning6" />
+
+    <Button
+        android:id="@+id/button_sounds_beginning6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left"
+        android:text="3-letter blends"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/button_sounds_beginning"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_sounds_beginning"
+        app:layout_constraintTop_toBottomOf="@+id/button_sounds_beginning5" />
+
+    <Button
+        android:id="@+id/button_sounds_beginning5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left"
+        android:text="Blends ending"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/button_sounds_beginning"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/button_sounds_beginning"
+        app:layout_constraintTop_toBottomOf="@+id/button_sounds_beginning4" />
+
+    <Button
+        android:id="@+id/button_sounds_beginning4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left"
+        android:text="Blends beginning"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/button_sounds_beginning"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_sounds_beginning"
+        app:layout_constraintTop_toBottomOf="@+id/button_sounds_beginning3" />
+
+    <Button
+        android:id="@+id/button_sounds_beginning3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left"
+        android:text="Hard and soft c and g"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/button_sounds_beginning"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_sounds_beginning"
+        app:layout_constraintTop_toBottomOf="@+id/button_sounds_beginning2" />
+
+    <Button
+        android:id="@+id/button_sounds_beginning2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left"
+        android:onClick="onClick"
+        android:text="Sounds ending"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/button_sounds_beginning"
+        app:layout_constraintStart_toStartOf="@+id/button_sounds_beginning"
+        app:layout_constraintTop_toBottomOf="@+id/button_sounds_beginning" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="Consonants"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.179" />
+
+    <Button
+        android:id="@+id/button_sounds_beginning"
+        android:layout_width="234dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left"
+        android:onClick="onClick"
+        android:text="Sounds beginning"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.311" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
