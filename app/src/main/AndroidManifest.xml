@@ -9,21 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Demo">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Consonants"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".Controller.Consonants"
+            android:parentActivityName=".Controller.MainActivity">
         </activity>
-        <activity android:name=".Vowels"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".Controller.Vowels"
+            android:parentActivityName=".Controller.MainActivity">
         </activity>
-        <activity android:name=".LessonList"
-            android:parentActivityName=".Consonants">
+        <activity android:name=".Controller.LessonList"
+            android:parentActivityName=".Controller.Consonants">
         </activity>
         <meta-data
             android:name="preloaded_fonts"
