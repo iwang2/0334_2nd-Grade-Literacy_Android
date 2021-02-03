@@ -16,7 +16,7 @@ public class Consonants extends AppCompatActivity {
         setContentView(R.layout.consonants);
     }
 
-    public void onClick(View view) {
-        startActivity(new Intent(Consonants.this, LessonList.class));
-    }
+//    public void onClick(View view) {
+//        startActivity(new Intent(Consonants.this, LessonList.class));
+//    }
 }
