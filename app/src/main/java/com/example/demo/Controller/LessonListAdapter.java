@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +25,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Vi
         public ViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
-            textView = (TextView) view.findViewById(R.id.lesson_textview);
+            textView = (TextView) view.findViewById(R.id.lesson_list_text);
         }
 
         public TextView getTextView() {
