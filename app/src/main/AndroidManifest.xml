@@ -32,6 +32,22 @@
             android:parentActivityName=".Controller.Schwas"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name=".Controller.SchwasE"
+            android:parentActivityName=".Controller.Schwas"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.SchwasI"
+            android:parentActivityName=".Controller.Schwas"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.SchwasO"
+            android:parentActivityName=".Controller.Schwas"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.SchwasU"
+            android:parentActivityName=".Controller.Schwas"
+            android:screenOrientation="landscape">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

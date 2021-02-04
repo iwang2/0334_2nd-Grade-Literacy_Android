@@ -30,8 +30,17 @@ public class Schwas extends AppCompatActivity implements LessonListAdapter.ItemC
     @Override
     public void onItemClick(View view, int position) {
         // open the appropriate lesson page using the getLessonName method on the adapter
-        if (adapter.getLessonName(position) == "a") {
+        String lesson = adapter.getLessonName(position);
+        if (lesson.equals("a")) {
             startActivity(new Intent(Schwas.this, SchwasA.class));
+        } else if (lesson.equals("e")) {
+            startActivity(new Intent(Schwas.this, SchwasE.class));
+        } else if (lesson.equals("i")) {
+            startActivity(new Intent(Schwas.this, SchwasI.class));
+        } else if (lesson.equals("o")) {
+            startActivity(new Intent(Schwas.this, SchwasO.class));
+        } else if (lesson.equals("u")) {
+            startActivity(new Intent(Schwas.this, SchwasU.class));
         }
     }
 }
