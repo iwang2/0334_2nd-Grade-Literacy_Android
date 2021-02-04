@@ -14,6 +14,6 @@ public class SchwasA extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lesson);
         TextView lessonName = (TextView) findViewById(R.id.lesson_title);
-        lessonName.setText("A");
+        lessonName.setText("a");
     }
 }

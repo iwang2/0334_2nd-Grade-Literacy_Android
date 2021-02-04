@@ -19,7 +19,7 @@ public class Schwas extends AppCompatActivity implements LessonListAdapter.ItemC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lesson_list);
         RecyclerView recyclerView = findViewById(R.id.lesson_list_recycler);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
         String[] lessons = {"a", "e", "i", "o", "u"};
         adapter = new LessonListAdapter(this, lessons);
