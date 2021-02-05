@@ -35,5 +35,11 @@ public class Vowels extends AppCompatActivity implements TopicListAdapter.ItemCl
         if (adapter.getTopicName(position) == "Schwas") {
             startActivity(new Intent(Vowels.this, Schwas.class));
         }
+        if (adapter.getTopicName(position) == "Vowel Pairs") {
+            startActivity(new Intent(Vowels.this, Pairs.class));
+        }
+
     }
+
+
 }

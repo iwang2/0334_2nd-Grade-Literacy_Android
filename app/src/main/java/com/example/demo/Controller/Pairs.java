@@ -22,9 +22,9 @@ public class Pairs extends AppCompatActivity implements LessonListAdapter.ItemCl
         RecyclerView recyclerView = findViewById(R.id.lesson_list_recycler);
         recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 
-        String lessons[] = {"ai", "au", "aw", "ay", "ea", "ea", "ee", "ew", "oa", "oi", "oo", "oo",
+        String lessons_pairs[] = {"ai", "au", "aw", "ay", "ea", "ea", "ee", "ew", "oa", "oi", "oo", "oo",
                 "ou", "ow", "ow", "oy"};
-        adapter = new LessonListAdapter(this, lessons);
+        adapter = new LessonListAdapter(this, lessons_pairs);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
