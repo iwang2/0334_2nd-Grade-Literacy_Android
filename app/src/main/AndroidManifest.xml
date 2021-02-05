@@ -24,6 +24,26 @@
             android:parentActivityName=".Controller.MainActivity"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name=".Controller.Beginning3"
+            android:parentActivityName=".Controller.Consonants"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.Beginning3Scr"
+            android:parentActivityName=".Controller.Beginning3"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.Beginning3Spl"
+            android:parentActivityName=".Controller.Beginning3"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.Beginning3Spr"
+            android:parentActivityName=".Controller.Beginning3"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.Beginning3Str"
+            android:parentActivityName=".Controller.Beginning3"
+            android:screenOrientation="landscape">
+        </activity>
         <activity android:name=".Controller.Schwas"
             android:parentActivityName=".Controller.Vowels"
             android:screenOrientation="landscape">
