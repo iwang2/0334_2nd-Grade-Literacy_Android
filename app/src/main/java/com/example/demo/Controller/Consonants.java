@@ -29,8 +29,11 @@ public class Consonants extends AppCompatActivity implements TopicListAdapter.It
 
     @Override
     public void onItemClick(View view, int position) {
-        if (adapter.getTopicName(position) == "beginning 3-letter blends") {
+        String topic = adapter.getTopicName(position);
+        if (topic.equals("beginning 3-letter blends")) {
             startActivity(new Intent(Consonants.this, Beginning3.class));
+        } else if (topic.equals("silent")) {
+            startActivity(new Intent(Consonants.this, Silent.class));
         }
     }
 }
