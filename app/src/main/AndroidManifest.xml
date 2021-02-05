@@ -44,6 +44,26 @@
             android:parentActivityName=".Controller.Beginning3"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name=".Controller.Silent"
+            android:parentActivityName=".Controller.Consonants"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.SilentCk"
+            android:parentActivityName=".Controller.Silent"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.SilentKn"
+            android:parentActivityName=".Controller.Silent"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.SilentSc"
+            android:parentActivityName=".Controller.Silent"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.SilentWr"
+            android:parentActivityName=".Controller.Silent"
+            android:screenOrientation="landscape">
+        </activity>
         <activity android:name=".Controller.Schwas"
             android:parentActivityName=".Controller.Vowels"
             android:screenOrientation="landscape">
