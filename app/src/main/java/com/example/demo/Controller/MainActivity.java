@@ -17,10 +17,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onConsonants(View view) {
-        startActivity(new Intent(MainActivity.this, Consonants.class));
+        Intent consonantsIntent = new Intent(MainActivity.this, ConsonantsVowels.class);
+        consonantsIntent.putExtra("ifConsonants", "true");
+        startActivity(consonantsIntent);
     }
 
     public void onVowels(View view) {
-        startActivity(new Intent(MainActivity.this, Vowels.class));
+        Intent vowelsIntent = new Intent(MainActivity.this, ConsonantsVowels.class);
+        vowelsIntent.putExtra("ifConsonants", "false");
+        startActivity(vowelsIntent);
     }
 }
