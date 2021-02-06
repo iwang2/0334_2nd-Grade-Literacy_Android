@@ -36,7 +36,6 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
 
         Intent topicIntent = getIntent();
         String topicName = topicIntent.getStringExtra("topicName");
-        System.out.println(topicName);
 
         String[] lessons = topicToLesson.get(topicName);
         adapter = new LessonListAdapter(this, lessons);
