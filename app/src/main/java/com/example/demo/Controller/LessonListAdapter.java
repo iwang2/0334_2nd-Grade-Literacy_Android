@@ -53,10 +53,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Vi
 
     @Override
     public int getItemCount() {
-        if (lessons != null) {
-            return lessons.length;
-        }
-        return 0;
+        return lessons.length;
     }
 
     String getLessonName(int position) {
