@@ -9,11 +9,26 @@
     app:cardElevation="0dp"
     app:contentPadding="0dp">
 
-    <TextView
-        android:id="@+id/lesson_list_text"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="a"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/lesson_list_text"
+            android:layout_width="92dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="a"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+
+        <ImageView
+            android:id="@+id/lesson_list_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="?android:attr/activatedBackgroundIndicator" />
+
+    </LinearLayout>
+
 </androidx.cardview.widget.CardView>
