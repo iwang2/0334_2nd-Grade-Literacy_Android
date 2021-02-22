@@ -37,6 +37,9 @@ public class ConsonantsVowels extends AppCompatActivity implements TopicListAdap
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
+    public void onBack(View view) {
+        onBackPressed();
+    }
 
     @Override
     public void onItemClick(View view, int position) {

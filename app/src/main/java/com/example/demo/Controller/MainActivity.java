@@ -38,4 +38,8 @@ public class MainActivity extends AppCompatActivity {
         Intent home = new Intent(MainActivity.this, MainActivity.class);
         startActivity(home);
     }
+
+    public void onBack(View view) {
+        onBackPressed();
+    }
 }

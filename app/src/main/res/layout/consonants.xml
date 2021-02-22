@@ -5,21 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar"></include>
+    <include layout="@layout/toolbar"></include>
+
 
     <TextView
         android:id="@+id/vowels_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginRight="124dp"
         android:text="Consonants"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.060000002" />
+        app:layout_constraintStart_toEndOf="@+id/include2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.16" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/consonants_recycler"

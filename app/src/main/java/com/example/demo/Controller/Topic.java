@@ -3,6 +3,8 @@ package com.example.demo.Controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,6 +18,8 @@ import java.util.Map;
 
 public class Topic extends AppCompatActivity implements LessonListAdapter.ItemClickListener {
     LessonListAdapter adapter;
+    ImageButton quizButton;
+    ImageButton repeatButton;
 
     Map<String, String[]> topicToLesson = new HashMap<String, String[]>() {{
         put("hard and soft c and g", new String[] {"c", "c", "g", "g", "g"});
@@ -29,6 +33,9 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
     public void onHome(View view) {
         Intent home = new Intent(Topic.this, MainActivity.class);
         startActivity(home);
+    }
+    public void onBack(View view) {
+        onBackPressed();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,10 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         adapter = new LessonListAdapter(this, lessons);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+
+        buttonVisibility();
+
+
     }
 
     @Override
@@ -53,5 +64,12 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         Intent lessonIntent = new Intent(Topic.this, Lesson.class);
         lessonIntent.putExtra("lessonName", lessonName);
         startActivity(lessonIntent);
+    }
+
+    public void buttonVisibility(){
+        quizButton = findViewById(R.id.quiz_button);
+        quizButton.setVisibility(View.VISIBLE);
+        repeatButton = findViewById(R.id.repeat_button);
+        repeatButton.setVisibility(View.VISIBLE);
     }
 }
