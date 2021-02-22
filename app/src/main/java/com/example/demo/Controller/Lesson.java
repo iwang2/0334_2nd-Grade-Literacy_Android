@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -16,5 +17,9 @@ public class Lesson extends AppCompatActivity {
         TextView lessonName = (TextView) findViewById(R.id.lesson_title);
         Intent lessonIntent = getIntent();
         lessonName.setText(lessonIntent.getStringExtra("lessonName"));
+    }
+    public void onHome(View view) {
+        Intent home = new Intent(Lesson.this, MainActivity.class);
+        startActivity(home);
     }
 }

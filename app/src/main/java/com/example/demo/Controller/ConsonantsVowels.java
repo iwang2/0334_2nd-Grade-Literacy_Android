@@ -3,6 +3,8 @@ package com.example.demo.Controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.demo.R;
 
@@ -42,5 +44,9 @@ public class ConsonantsVowels extends AppCompatActivity implements TopicListAdap
         Intent topicIntent = new Intent(ConsonantsVowels.this, Topic.class);
         topicIntent.putExtra("topicName", topicName);
         startActivity(topicIntent);
+    }
+    public void onHome(View view) {
+        Intent home = new Intent(ConsonantsVowels.this, MainActivity.class);
+        startActivity(home);
     }
 }

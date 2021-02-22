@@ -26,7 +26,10 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         put("with r", new String[] {"ar", "ar", "er", "ir", "or", "or", "ur"});
         put("schwas", new String[] {"a", "e", "i", "o", "u"});
     }};
-
+    public void onHome(View view) {
+        Intent home = new Intent(Topic.this, MainActivity.class);
+        startActivity(home);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
