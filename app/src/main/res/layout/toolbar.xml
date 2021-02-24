@@ -8,26 +8,26 @@
 
     <RelativeLayout
         android:id="@+id/toolbar"
-        android:layout_width="65dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
 
         <ImageButton
             android:id="@+id/home_button"
-            android:layout_width="56dp"
-            android:layout_height="44dp"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
             android:layout_below="@+id/back_button"
 
             android:layout_centerInParent="true"
-            android:layout_marginTop="22dp"
+
             android:onClick="onHome"
             android:visibility="visible"
             app:srcCompat="@drawable/home" />
 
         <ImageButton
             android:id="@+id/back_button"
-            android:layout_width="56dp"
-            android:layout_height="44dp"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:layout_marginStart="5dp"
@@ -39,47 +39,45 @@
 
         <ImageButton
             android:id="@+id/piggyBank_button"
-            android:layout_width="55dp"
-            android:layout_height="44dp"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
             android:layout_above="@+id/puzzle_button"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
 
             android:visibility="visible"
             app:srcCompat="@drawable/bank" />
 
         <ImageButton
             android:id="@+id/puzzle_button"
-            android:layout_width="55dp"
-            android:layout_height="44dp"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
             android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:layout_marginEnd="19dp"
-            android:layout_marginRight="19dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="5dp"
+
             android:visibility="visible"
             app:srcCompat="@drawable/puzzle" />
 
         <ImageButton
             android:id="@+id/repeat_button"
-            android:layout_width="56dp"
-            android:layout_height="46dp"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
             android:layout_above="@+id/piggyBank_button"
 
             android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/repeat" />
 
         <ImageButton
             android:id="@+id/quiz_button"
 
-            android:layout_width="56dp"
-            android:layout_height="46dp"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
             android:layout_above="@+id/repeat_button"
 
             android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/quiz" />
 
