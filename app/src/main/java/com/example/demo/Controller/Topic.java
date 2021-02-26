@@ -72,4 +72,10 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         repeatButton = findViewById(R.id.repeat_button);
         repeatButton.setVisibility(View.VISIBLE);
     }
+
+    public void onQuiz(View view) {
+        Intent quizIntent = new Intent(Topic.this, Quiz.class);
+        quizIntent.putExtra("ifTopic", true);
+        startActivity(quizIntent);
+    }
 }
