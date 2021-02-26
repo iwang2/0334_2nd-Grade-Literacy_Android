@@ -20,5 +20,6 @@
         android:layout_gravity="left|center_vertical"
         android:gravity="left|center_vertical"
         android:text="topic"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:fontFamily="@font/comic_sans"/>
 </LinearLayout>
