@@ -16,80 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controller.Consonants"
+        <activity android:name=".Controller.ConsonantsVowels"
             android:parentActivityName=".Controller.MainActivity"
             android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".Controller.Vowels"
-            android:parentActivityName=".Controller.MainActivity"
+        <activity android:name=".Controller.Topic"
+            android:parentActivityName=".Controller.ConsonantsVowels"
+            android:noHistory="true"
             android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".Controller.Beginning3"
-            android:parentActivityName=".Controller.Consonants"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.Beginning3Scr"
-            android:parentActivityName=".Controller.Beginning3"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.Beginning3Spl"
-            android:parentActivityName=".Controller.Beginning3"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.Beginning3Spr"
-            android:parentActivityName=".Controller.Beginning3"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.Beginning3Str"
-            android:parentActivityName=".Controller.Beginning3"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.Silent"
-            android:parentActivityName=".Controller.Consonants"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.SilentCk"
-            android:parentActivityName=".Controller.Silent"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.SilentKn"
-            android:parentActivityName=".Controller.Silent"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.SilentSc"
-            android:parentActivityName=".Controller.Silent"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.SilentWr"
-            android:parentActivityName=".Controller.Silent"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.Schwas"
-            android:parentActivityName=".Controller.Vowels"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.SchwasA"
-            android:parentActivityName=".Controller.Schwas"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.SchwasE"
-            android:parentActivityName=".Controller.Schwas"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.SchwasI"
-            android:parentActivityName=".Controller.Schwas"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.SchwasO"
-            android:parentActivityName=".Controller.Schwas"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.SchwasU"
-            android:parentActivityName=".Controller.Schwas"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".Controller.Pairs"
-            android:parentActivityName=".Controller.Vowels"
+        <activity android:name=".Controller.Lesson"
+            android:parentActivityName=".Controller.Topic"
+            android:noHistory="true"
             android:screenOrientation="landscape">
         </activity>
         <meta-data

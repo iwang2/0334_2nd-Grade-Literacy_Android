@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<include layout="@layout/toolbar"></include>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -50,9 +51,7 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout"><![CDATA[
-
             />
-
             ]]>
 
             <ImageView
@@ -83,9 +82,7 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout"><![CDATA[
-
             />
-
             ]]>
 
             <ImageView
@@ -116,9 +113,7 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout"><![CDATA[
-
             />
-
             ]]>
 
             <ImageView
@@ -142,9 +137,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
