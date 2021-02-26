@@ -6,28 +6,34 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/vowels_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vowels"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13999999" />
+   <include
+       android:id="@+id/include4"
+       layout="@layout/toolbar"></include>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/vowels_recycler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vowels_title"
-        app:layout_constraintVertical_bias="0.257" />
+
+   <TextView
+       android:id="@+id/vowels_title"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Vowels"
+       android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.498"
+       app:layout_constraintStart_toEndOf="@+id/include4"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.11" />
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/vowels_recycler"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toEndOf="@+id/include4"
+       app:layout_constraintTop_toBottomOf="@+id/vowels_title"
+       app:layout_constraintVertical_bias="0.257" />
 
     <ImageView
         android:id="@+id/imageView6"
