@@ -24,7 +24,7 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
     Map<String, String[]> topicToLesson = new HashMap<String, String[]>() {{
         put("hard and soft c and g", new String[] {"c", "c", "g", "g", "g"});
         put("beginning 3-letter blends", new String[] {"scr", "spl", "spr", "str"});
-        put("silent", new String[] {"kn", "wr", "sc", "ck"});
+        put("silent", new String[] {"gh", "kn", "sc", "wr"});
         put("pairs", new String[] {"ai", "au", "aw", "ay", "ea", "ea", "ee", "ew", "oa", "oi", "oo", "oo",
                 "ou", "ow", "ow", "oy"});
         put("with r", new String[] {"ar", "ar", "er", "ir", "or", "or", "ur"});
