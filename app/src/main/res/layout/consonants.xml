@@ -14,9 +14,9 @@
         android:id="@+id/vowels_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/comic_sans"
         android:text="Consonants"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:fontFamily="@font/comic_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -28,8 +28,8 @@
         android:id="@+id/consonants_recycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:fontFamily="@font/comic_sans"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/include2"
@@ -48,10 +48,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/consonants_recycler"
         app:layout_constraintEnd_toStartOf="@+id/consonants_recycler"
+        app:layout_constraintStart_toEndOf="@+id/include2"
         app:layout_constraintTop_toTopOf="@+id/consonants_recycler"
         app:srcCompat="@drawable/consonants_3letter" />
 
