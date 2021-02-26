@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <include layout="@layout/toolbar"></include>
+
+
     <TextView
         android:id="@+id/question"
         android:layout_width="190dp"
         android:layout_height="140dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="36dp"
         android:gravity="center"
         android:text="abc"
         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
@@ -63,11 +66,11 @@
 
     <TextView
         android:id="@+id/result"
-        android:layout_width="239dp"
-        android:layout_height="82dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="232dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginBottom="68dp"
         android:text="result"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         app:layout_constraintBottom_toBottomOf="parent"

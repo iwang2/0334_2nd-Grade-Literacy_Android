@@ -21,7 +21,8 @@ import java.util.Random;
 import java.util.Set;
 
 public class Quiz extends AppCompatActivity implements View.OnClickListener {
-//    LessonListAdapter adapter;
+    ImageButton quizButton;
+    ImageButton repeatButton;
     Set<String> wordBank = new HashSet<>(Arrays.asList(
             "scraper", "scratch", "scream", "screwdriver", "screws", "scribble", "scrub", "scrubs",
             "splash", "splat", "splatter", "splendid", "splendor", "splinter", "split", "splits",
@@ -75,6 +76,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.quiz);
         TextView question = findViewById(R.id.question);
         Intent quizIntent = getIntent();
+        buttonVisibility();
         if (Boolean.valueOf(quizIntent.getStringExtra("ifTopic"))) {
 //            topic quiz
         } else {
@@ -115,4 +117,18 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             result.setText("incorrect");
         }
     }
+
+    public void onHome(View view) {
+        Intent home = new Intent(Quiz.this, MainActivity.class);
+        startActivity(home);
+    }
+    public void onBack(View view) { onBackPressed(); }
+
+    public void buttonVisibility(){
+        quizButton = findViewById(R.id.quiz_button);
+        quizButton.setVisibility(View.VISIBLE);
+        repeatButton = findViewById(R.id.repeat_button);
+        repeatButton.setVisibility(View.VISIBLE);
+    }
+
 }

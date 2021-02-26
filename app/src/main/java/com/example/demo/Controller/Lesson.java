@@ -13,13 +13,15 @@ import com.example.demo.R;
 public class Lesson extends AppCompatActivity {
     ImageButton quizButton;
     ImageButton repeatButton;
+    String lessonNameString;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lesson);
         TextView lessonName = (TextView) findViewById(R.id.lesson_title);
         Intent lessonIntent = getIntent();
-        lessonName.setText(lessonIntent.getStringExtra("lessonName"));
+        lessonNameString = lessonIntent.getStringExtra("lessonName");
+        lessonName.setText(lessonNameString);
         buttonVisibility();
     }
     public void onHome(View view) {
@@ -33,5 +35,12 @@ public class Lesson extends AppCompatActivity {
         quizButton.setVisibility(View.VISIBLE);
         repeatButton = findViewById(R.id.repeat_button);
         repeatButton.setVisibility(View.VISIBLE);
+    }
+
+    public void onQuiz(View view) {
+        Intent quizIntent = new Intent(Lesson.this, Quiz.class);
+        quizIntent.putExtra("ifTopic", false);
+        quizIntent.putExtra("name", lessonNameString);
+        startActivity(quizIntent);
     }
 }
