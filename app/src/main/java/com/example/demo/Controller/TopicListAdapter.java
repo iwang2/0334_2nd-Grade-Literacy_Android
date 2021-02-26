@@ -21,22 +21,30 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.View
     }
 
     private String[] topics;
+    private int[] icons;
     private ItemClickListener listener;
 
-    TopicListAdapter(Context context, String[] topics) {
+    TopicListAdapter(Context context, String[] topics, int[] icons) {
         this.topics = topics;
+        this.icons = icons;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView textView;
+        private ImageView icon;
         public ViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
             textView = (TextView) view.findViewById(R.id.topic_list_item_text);
+            icon = (ImageView) view.findViewById(R.id.topic_list_icon);
         }
 
         public TextView getTextView() {
             return textView;
+        }
+
+        public ImageView getIcon() {
+            return icon;
         }
 
         @Override
@@ -55,6 +63,7 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.getTextView().setText(topics[position]);
+        holder.getIcon().setImageResource(icons[position]);
     }
 
     String getTopicName(int position) {

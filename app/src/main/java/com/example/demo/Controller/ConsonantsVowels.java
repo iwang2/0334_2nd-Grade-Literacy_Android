@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ConsonantsVowels extends AppCompatActivity implements TopicListAdapter.ItemClickListener {
 
     TopicListAdapter adapter;
@@ -20,20 +23,23 @@ public class ConsonantsVowels extends AppCompatActivity implements TopicListAdap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String[] topics;
+        int[] icons;
         RecyclerView recyclerView;
         if (Boolean.valueOf(getIntent().getStringExtra("ifConsonants"))) {
             setContentView(R.layout.consonants);
             recyclerView = findViewById(R.id.consonants_recycler);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             topics = new String[]{"hard and soft c and g", "beginning 3-letter blends", "silent"};
+            icons = new int[]{R.drawable.topic_icon_hardsoftcg, R.drawable.topic_icon_3letterblend, R.drawable.topic_icon_silent};
         } else {
             setContentView(R.layout.vowels);
             recyclerView = findViewById(R.id.vowels_recycler);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             topics = new String[]{"pairs", "with r", "schwas"};
+            icons = new int[]{R.drawable.topic_icon_pairs, R.drawable.topic_icon_withr, R.drawable.topic_icon_schwas};
         }
 
-        adapter = new TopicListAdapter(this, topics);
+        adapter = new TopicListAdapter(this, topics, icons);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
