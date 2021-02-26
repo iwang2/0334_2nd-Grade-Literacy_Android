@@ -15,7 +15,7 @@
         android:gravity="center"
         android:text="a"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:fontFamily="@font/comic_sans"/>
+        android:fontFamily="@font/comic_sans"
         android:orientation="horizontal">
 
         <TextView
