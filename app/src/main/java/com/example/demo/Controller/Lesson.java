@@ -19,6 +19,7 @@ public class Lesson extends AppCompatActivity {
     LessonListAdapter adapter;
     ImageButton quizButton;
     ImageButton repeatButton;
+    String lessonNameString;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,5 +111,12 @@ public class Lesson extends AppCompatActivity {
         quizButton.setVisibility(View.VISIBLE);
         repeatButton = findViewById(R.id.repeat_button);
         repeatButton.setVisibility(View.VISIBLE);
+    }
+
+    public void onQuiz(View view) {
+        Intent quizIntent = new Intent(Lesson.this, Quiz.class);
+        quizIntent.putExtra("ifTopic", false);
+        quizIntent.putExtra("name", lessonNameString);
+        startActivity(quizIntent);
     }
 }

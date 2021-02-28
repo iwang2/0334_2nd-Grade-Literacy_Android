@@ -24,6 +24,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="a"
+            android:fontFamily="@font/comic_sans"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
 
         <ImageView

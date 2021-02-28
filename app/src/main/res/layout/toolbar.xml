@@ -78,6 +78,7 @@
 
             android:layout_centerInParent="true"
             android:layout_marginBottom="5dp"
+            android:onClick="onQuiz"
             android:visibility="invisible"
             app:srcCompat="@drawable/quiz" />
 
