@@ -85,7 +85,9 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             question.setText(lessonName);
             Set<String> answerList = lessonToAnswers.get(lessonName);
             Set<String> wordBankCopy = wordBank;
-            wordBankCopy.removeAll(answerList);
+            for (String answer: answerList) {
+                wordBankCopy.remove(answer);
+            }
             Set<String> wrongChoices = wordBankCopy;
             Random rand = new Random();
             String answer = (String) answerList.toArray()[rand.nextInt(answerList.size())];
@@ -94,7 +96,6 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 String randomWord = (String) wrongChoices.toArray()[rand.nextInt(wrongChoices.size())];
                 ImageButton btn = findViewById(id);
                 int imageRes = getResources().getIdentifier(String.format("@drawable/%s", randomWord), null, getPackageName());
-//                btn.setImageDrawable(getResources().getDrawable(imageRes));
                 btn.setImageResource(imageRes);
                 wrongChoices.remove(randomWord);
             }
@@ -102,7 +103,6 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             correctButtonId = buttonIds[rand.nextInt(buttonIds.length)];
             ImageButton correctButton = findViewById(correctButtonId);
             int imageRes = getResources().getIdentifier(String.format("@drawable/%s", answer), null, getPackageName());
-//            correctButton.setImageDrawable(getResources().getDrawable(imageRes));
             correctButton.setImageResource(imageRes);
         }
     }

@@ -26,9 +26,8 @@ public class Lesson extends AppCompatActivity {
         setContentView(R.layout.lesson);
         TextView lessonName = (TextView) findViewById(R.id.lesson_title);
         Intent lessonIntent = getIntent();
-        lessonName.setText(lessonIntent.getStringExtra("lessonName"));
-
-
+        lessonNameString = lessonIntent.getStringExtra("lessonName");
+        lessonName.setText(lessonNameString);
 
         String[] examples = lessonToExamples.get(lessonIntent.getStringExtra("lessonName"));
         ImageView exampleImage;
