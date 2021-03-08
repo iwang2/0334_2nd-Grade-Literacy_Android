@@ -20,8 +20,9 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
     LessonListAdapter adapter;
     ImageButton quizButton;
     ImageButton repeatButton;
+    String topicName;
 
-    Map<String, String[]> topicToLesson = new HashMap<String, String[]>() {{
+    static Map<String, String[]> topicToLesson = new HashMap<String, String[]>() {{
         put("hard and soft c and g", new String[] {"c", "c", "g", "g", "g"});
         put("beginning 3-letter blends", new String[] {"scr", "spl", "spr", "str"});
         put("silent", new String[] {"gh", "kn", "sc", "wr"});
@@ -45,7 +46,7 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
         Intent topicIntent = getIntent();
-        String topicName = topicIntent.getStringExtra("topicName");
+        topicName = topicIntent.getStringExtra("topicName");
 
         String[] lessons = topicToLesson.get(topicName);
         adapter = new LessonListAdapter(this, lessons);
@@ -75,7 +76,8 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
 
     public void onQuiz(View view) {
         Intent quizIntent = new Intent(Topic.this, Quiz.class);
-        quizIntent.putExtra("ifTopic", true);
+        quizIntent.putExtra("ifTopic", "true");
+        quizIntent.putExtra("name", topicName);
         startActivity(quizIntent);
     }
 }
