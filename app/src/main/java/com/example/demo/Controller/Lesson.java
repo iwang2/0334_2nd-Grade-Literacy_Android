@@ -114,7 +114,7 @@ public class Lesson extends AppCompatActivity {
 
     public void onQuiz(View view) {
         Intent quizIntent = new Intent(Lesson.this, Quiz.class);
-        quizIntent.putExtra("ifTopic", false);
+        quizIntent.putExtra("ifTopic", "false");
         quizIntent.putExtra("name", lessonNameString);
         startActivity(quizIntent);
     }
