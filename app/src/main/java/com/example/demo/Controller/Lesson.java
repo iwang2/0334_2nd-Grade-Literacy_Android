@@ -14,8 +14,10 @@ import com.example.demo.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 public class Lesson extends AppCompatActivity {
@@ -48,9 +50,8 @@ public class Lesson extends AppCompatActivity {
         }
         buttonVisibility();
         List<Integer>  soundsList= lessonSounds(lessonNameString);
-        if(soundsList != null) {
-            new Handler().postDelayed(() -> playSound(soundsList), 1000);
-        }
+        new Handler().postDelayed(() -> playSound(soundsList), 1000);
+
     }
 
     public void playSound(List<Integer> soundsList){
@@ -71,11 +72,11 @@ public class Lesson extends AppCompatActivity {
 
     public List<Integer> lessonSounds(String lessonNameString){
         List<Integer> soundsList = new ArrayList<>();
+        //Hard and Soft c & g
         if(lessonNameString.equals("c")) {
             soundsList = Arrays.asList(R.raw.cat,R.raw.canary,R.raw.cake);
-        }
-
-
+        } // Still Needed: c2,g,g1,g2
+        //Beginning 3 Letter Blends
         else if(lessonNameString.equals("scr")) {
             soundsList = Arrays.asList(R.raw.scrub,R.raw.scratch,R.raw.scream);
         }else if(lessonNameString.equals("spl")) {
@@ -85,8 +86,7 @@ public class Lesson extends AppCompatActivity {
         }else if(lessonNameString.equals("str")) {
             soundsList = Arrays.asList(R.raw.strong,R.raw.straw,R.raw.string);
         }
-
-
+        //Silent
         else if(lessonNameString.equals("gh")) {
             soundsList = Arrays.asList(R.raw.high,R.raw.right,R.raw.eight);
         }else if(lessonNameString.equals("kn")) {
@@ -96,8 +96,56 @@ public class Lesson extends AppCompatActivity {
         }else if(lessonNameString.equals("wr")) {
             soundsList = Arrays.asList(R.raw.wrap,R.raw.write,R.raw.wrong);
         }
-
-
+        //Pairs
+        else if(lessonNameString.equals("ai")) {
+            soundsList = Arrays.asList(R.raw.tail,R.raw.nail,R.raw.rainbow);
+        }else if(lessonNameString.equals("au")) {
+            soundsList = Arrays.asList(R.raw.haul,R.raw.gauze,R.raw.faucet);
+        }else if(lessonNameString.equals("aw")) {
+            soundsList = Arrays.asList(R.raw.saw,R.raw.hawk,R.raw.paws);
+        }else if(lessonNameString.equals("ay")) {
+            soundsList = Arrays.asList(R.raw.jay,R.raw.ray,R.raw.play);
+        }else if(lessonNameString.equals("ee")) {
+            soundsList = Arrays.asList(R.raw.bee,R.raw.tree,R.raw.jeep);
+        }else if(lessonNameString.equals("ew")) {
+            soundsList = Arrays.asList(R.raw.flew,R.raw.blew,R.raw.chew);
+        }else if(lessonNameString.equals("oa")) {
+            soundsList = Arrays.asList(R.raw.goat,R.raw.boat,R.raw.coat);
+        }else if(lessonNameString.equals("oi")) {
+            soundsList = Arrays.asList(R.raw.coin,R.raw.point,R.raw.choice);
+        }else if(lessonNameString.equals("oo")) {
+            soundsList = Arrays.asList(R.raw.zoo,R.raw.moon); // Add Hoof
+        }else if(lessonNameString.equals("ou")) {
+            soundsList = Arrays.asList(R.raw.house,R.raw.mouth, R.raw.proud);
+        }else if(lessonNameString.equals("ow")) {
+            soundsList = Arrays.asList(R.raw.blow,R.raw.snow, R.raw.throw1);
+        }else if(lessonNameString.equals("oy")) {
+            soundsList = Arrays.asList(R.raw.boy,R.raw.toys, R.raw.oyster);
+        }//Still Needed: ea,ea1,oo1,ow1
+        //With R
+        else if(lessonNameString.equals("ar")) {
+            soundsList = Arrays.asList(R.raw.arm,R.raw.stars, R.raw.barn);
+        }else if(lessonNameString.equals("er")) {
+            soundsList = Arrays.asList(R.raw.fern,R.raw.zipper);// ADD Tiger
+        }else if(lessonNameString.equals("ir")) {
+            soundsList = Arrays.asList(R.raw.bird,R.raw.girl); // ADD Shirt
+        }else if(lessonNameString.equals("or")) {
+            soundsList = Arrays.asList(R.raw.corn,R.raw.orca); //ADD Horns
+        }else if(lessonNameString.equals("ur")) {
+            soundsList = Arrays.asList(R.raw.burn); //ADD Surf/Nurse
+        }//Still Needed: ar1, or1
+        //SCHWAS
+        else if(lessonNameString.equals("a")) {
+            soundsList = Arrays.asList(R.raw.sofa,R.raw.zebra, R.raw.afraid);
+        }else if(lessonNameString.equals("e")) {
+            soundsList = Arrays.asList(R.raw.camel,R.raw.oven, R.raw.kitten);
+        }else if(lessonNameString.equals("i")) {
+            soundsList = Arrays.asList(R.raw.rabbit,R.raw.pencil, R.raw.robin);
+        }else if(lessonNameString.equals("o")) {
+            soundsList = Arrays.asList(R.raw.lion,R.raw.oven,R.raw.wagon);
+        } else if(lessonNameString.equals("u")) {
+            soundsList = Arrays.asList(R.raw.bug,R.raw.bus, R.raw.cut);
+        }
         return soundsList;
     }
 
