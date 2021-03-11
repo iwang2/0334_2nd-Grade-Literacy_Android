@@ -1,22 +1,24 @@
 package com.example.demo.Controller;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.demo.R;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Random;
+
 
 public class Lesson extends AppCompatActivity {
-    LessonListAdapter adapter;
     ImageButton quizButton;
     ImageButton repeatButton;
     String lessonNameString;
@@ -43,14 +45,65 @@ public class Lesson extends AppCompatActivity {
             imageRes = getResources().getIdentifier(String.format("@drawable/%s", answer), null, getPackageName());
             exampleImage.setImageResource(imageRes);
             exampleDescription.setText(answer);
+        }
+        buttonVisibility();
+        List<Integer>  soundsList= lessonSounds(lessonNameString);
+        if(soundsList != null) {
+            new Handler().postDelayed(() -> playSound(soundsList), 1000);
+        }
+    }
 
+    public void playSound(List<Integer> soundsList){
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
+        mp.start();
+        mp.setOnCompletionListener(mp1 -> {
+            mp1.release();
+            mp1 = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
+            mp1.start();
+            mp1.setOnCompletionListener(mp2 -> {
+                mp2.release();
+                mp2 = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
+                mp2.start();
+                mp2.setOnCompletionListener(MediaPlayer::release);
+            });
+        });
+    }
+
+    public List<Integer> lessonSounds(String lessonNameString){
+        List<Integer> soundsList = new ArrayList<>();
+        if(lessonNameString.equals("c")) {
+            soundsList = Arrays.asList(R.raw.cat,R.raw.canary,R.raw.cake);
         }
 
-        buttonVisibility();
+
+        else if(lessonNameString.equals("scr")) {
+            soundsList = Arrays.asList(R.raw.scrub,R.raw.scratch,R.raw.scream);
+        }else if(lessonNameString.equals("spl")) {
+            soundsList = Arrays.asList(R.raw.split,R.raw.splat,R.raw.splash);
+        }else if(lessonNameString.equals("spr")) {
+            soundsList = Arrays.asList(R.raw.spread,R.raw.spruce,R.raw.sprain);
+        }else if(lessonNameString.equals("str")) {
+            soundsList = Arrays.asList(R.raw.strong,R.raw.straw,R.raw.string);
+        }
+
+
+        else if(lessonNameString.equals("gh")) {
+            soundsList = Arrays.asList(R.raw.high,R.raw.right,R.raw.eight);
+        }else if(lessonNameString.equals("kn")) {
+            soundsList = Arrays.asList(R.raw.knot,R.raw.knee,R.raw.knit);
+        }else if(lessonNameString.equals("sc")) {
+            soundsList = Arrays.asList(R.raw.scent,R.raw.scene,R.raw.science);
+        }else if(lessonNameString.equals("wr")) {
+            soundsList = Arrays.asList(R.raw.wrap,R.raw.write,R.raw.wrong);
+        }
+
+
+        return soundsList;
     }
 
     Map<String, String[]> lessonToExamples= new HashMap<String, String[]>() {{
         put("c", new String[] {"cat", "canary", "cake"});
+
         //put("c", new String[] {"celery", "face", "balance"});
         put("g", new String[] {"goose", "goat", "gold"});
         //put("g", new String[] {"frog", "plug", "bug"});
