@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -52,6 +53,7 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
+
         buttonVisibility();
 
 
@@ -61,8 +63,11 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
     public void onItemClick(View view, int position) {
         // open the appropriate lesson page using the getLessonName method on the adapter
         String lessonName = adapter.getLessonName(position);
+
         Intent lessonIntent = new Intent(Topic.this, Lesson.class);
         lessonIntent.putExtra("lessonName", lessonName);
+        lessonIntent.putExtra("lessons", adapter.getLessons());
+        lessonIntent.putExtra("position", adapter.getLessonPosition(lessonName));
         startActivity(lessonIntent);
     }
 

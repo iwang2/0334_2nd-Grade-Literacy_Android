@@ -20,6 +20,8 @@ public class Lesson extends AppCompatActivity {
     ImageButton quizButton;
     ImageButton repeatButton;
     String lessonNameString;
+    private View view;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +106,30 @@ public class Lesson extends AppCompatActivity {
         Intent home = new Intent(Lesson.this, MainActivity.class);
         startActivity(home);
     }
+
     public void onBack(View view) { onBackPressed(); }
+
+    public void onPrev(View view) {
+        Intent lessonIntent = getIntent();
+        int position = lessonIntent.getIntExtra("position", 0);
+        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
+        lessonNameString = position > 0 ? lessons[position-1] : lessons[position];
+        lessonIntent.putExtra("lessonName", lessonNameString);
+        lessonIntent.putExtra("position", position-1);
+        startActivity(lessonIntent);
+    }
+
+    public void onNext(View view) {
+
+        Intent lessonIntent = getIntent();
+        int position = lessonIntent.getIntExtra("position", 0);
+        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
+        lessonNameString = position < lessons.length-1 ? lessons[position+1] : lessons[position];
+        lessonIntent.putExtra("lessonName", lessonNameString);
+        lessonIntent.putExtra("position", position+1);
+        startActivity(lessonIntent);
+    }
+
 
     public void buttonVisibility(){
         quizButton = findViewById(R.id.quiz_button);

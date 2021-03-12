@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demo.R;
+
+import java.util.ArrayList;
 
 public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.ViewHolder> {
     private String[] lessons;
@@ -69,6 +72,18 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Vi
 
     String getLessonName(int position) {
         return lessons[position];
+    }
+
+    String[] getLessons() {return lessons;}
+
+    int getLessonPosition(String lessonName) {
+        int position = 0;
+        for (String s: lessons) {
+            if (s == lessonName) return position;
+            position++;
+        }
+        //should never reach here.
+        return 0;
     }
 
     void setClickListener(ItemClickListener listener) {
