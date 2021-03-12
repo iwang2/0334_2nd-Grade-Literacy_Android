@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demo.R;
+import Model.Model;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -76,6 +77,29 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         put("or", new HashSet<>(Arrays.asList("porcupine", "work", "corn", "gator", "hornet", "mirror", "orca", "uniforms")));
         put("ur", new HashSet<>(Arrays.asList("burn", "burrito", "burro", "hamburger")));
     }};
+
+//    Map<String, Integer> coinsGet = new HashMap<String, Integer>() {{
+//        put("scr", 0);
+//        put("spl", 0);
+//        put("spr", 0);
+//        put("str", 0);
+//        put("kn", 0);
+//        put("wr", 0);
+//        put("sc", 0);
+//        put("ck", 0);
+//        put("ay", 0);
+////        put("au", 0);
+//        put("ew", 0);
+//        put("oi", 0);
+////        put("ow", 0);
+//        put("ea", 0);
+//        put("oy", 0);
+//        put("ar", 0);
+//        put("er", 0);
+//        put("ir", 0);
+//        put("or", 0);
+//        put("ur", 0);
+//    }};
 
     int correctButtonId;
     boolean isTopic;
@@ -187,6 +211,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         TextView result = findViewById(R.id.result);
         if (v.getId() == correctButtonId) {
             result.setText("correct");
+            Model.addCoins();
             Intent quizIntent = new Intent(Quiz.this, Quiz.class);
             if (isTopic) {
                 quizIntent.putExtra("ifTopic", "true");
@@ -208,6 +233,10 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         startActivity(home);
     }
     public void onBack(View view) { onBackPressed(); }
+    public void onBank(View view) {
+        Intent bank = new Intent(Quiz.this, PiggyBank.class);
+        startActivity(bank);
+    }
 
     public void buttonVisibility(){
         quizButton = findViewById(R.id.quiz_button);

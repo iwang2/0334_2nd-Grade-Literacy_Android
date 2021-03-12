@@ -34,6 +34,12 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
     public void onBack(View view) {
         onBackPressed();
     }
+
+    public void onBank(View view) {
+        Intent bank = new Intent(Topic.this, PiggyBank.class);
+        startActivity(bank);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
