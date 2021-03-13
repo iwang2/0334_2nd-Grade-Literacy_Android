@@ -4,15 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.demo.R;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,8 +17,10 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
     LessonListAdapter adapter;
     ImageButton quizButton;
     ImageButton repeatButton;
+    String topicName;
 
-    Map<String, String[]> topicToLesson = new HashMap<String, String[]>() {{
+
+    static Map<String, String[]> topicToLesson = new HashMap<String, String[]>() {{
         put("hard and soft c and g", new String[] {"c1", "c2", "g1", "g2", "g3"});
         put("beginning 3-letter blends", new String[] {"scr", "spl", "spr", "str"});
         put("silent", new String[] {"gh", "kn", "sc", "wr"});
@@ -46,17 +44,16 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
         Intent topicIntent = getIntent();
-        String topicName = topicIntent.getStringExtra("topicName");
+        topicName = topicIntent.getStringExtra("topicName");
 
         String[] lessons = topicToLesson.get(topicName);
+
         adapter = new LessonListAdapter(this, lessons);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
 
         buttonVisibility();
-
-
     }
 
     @Override
@@ -68,8 +65,13 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         lessonIntent.putExtra("lessonName", lessonName);
         lessonIntent.putExtra("lessons", adapter.getLessons());
         lessonIntent.putExtra("position", adapter.getLessonPosition(lessonName));
+
+        Intent topicIntent = getIntent();
+        lessonIntent.putExtra("topicName", topicIntent.getStringExtra("topicName"));
+
         startActivity(lessonIntent);
     }
+
 
     public void buttonVisibility(){
         quizButton = findViewById(R.id.quiz_button);
@@ -80,7 +82,10 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
 
     public void onQuiz(View view) {
         Intent quizIntent = new Intent(Topic.this, Quiz.class);
-        quizIntent.putExtra("ifTopic", true);
+        quizIntent.putExtra("ifTopic", "true");
+        quizIntent.putExtra("name", topicName);
         startActivity(quizIntent);
+
+
     }
 }
