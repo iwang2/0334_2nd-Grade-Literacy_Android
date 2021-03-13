@@ -28,7 +28,11 @@ public class Lesson extends AppCompatActivity {
         setContentView(R.layout.lesson);
         TextView lessonName = (TextView) findViewById(R.id.lesson_title);
         Intent lessonIntent = getIntent();
-        lessonName.setText(lessonIntent.getStringExtra("lessonName"));
+        lessonNameString = lessonIntent.getStringExtra("lessonName");
+        if (Character.isDigit(lessonNameString.toCharArray()[lessonNameString.length()-1])) {
+            lessonNameString = lessonNameString.substring(0, lessonNameString.length()-1);
+        }
+        lessonName.setText(lessonNameString);
 
 
 
@@ -43,9 +47,11 @@ public class Lesson extends AppCompatActivity {
             exampleImage = (ImageView) findViewById(imagesId[i]);
             exampleDescription = (TextView) findViewById(descriptionId[i]);
             answer = examples[i];
+            if (answer == "gingerbread man") answer = "gingerbread_man";
+            if (answer == "throw") answer = "throw_";
             imageRes = getResources().getIdentifier(String.format("@drawable/%s", answer), null, getPackageName());
             exampleImage.setImageResource(imageRes);
-            exampleDescription.setText(answer);
+            exampleDescription.setText(examples[i]);
 
         }
 
@@ -53,11 +59,11 @@ public class Lesson extends AppCompatActivity {
     }
 
     Map<String, String[]> lessonToExamples= new HashMap<String, String[]>() {{
-        put("c", new String[] {"cat", "canary", "cake"});
-        //put("c", new String[] {"celery", "face", "balance"});
-        put("g", new String[] {"goose", "goat", "gold"});
-        //put("g", new String[] {"frog", "plug", "bug"});
-        //put("g", new String[] {"giraffe", "gingerbread man", "fridge"});
+        put("c1", new String[] {"cat", "canary", "cake"});
+        put("c2", new String[] {"celery", "face", "balance"});
+        put("g1", new String[] {"goose", "goat", "gold"});
+        put("g2", new String[] {"frog", "plug", "bug"});
+        put("g3", new String[] {"giraffe", "gingerbread man", "fridge"});
 
         put("scr", new String[] {"scrub", "scratch", "scream"});
         put("spl", new String[] {"split", "splat", "splash"});
@@ -73,25 +79,25 @@ public class Lesson extends AppCompatActivity {
         put("au", new String[] {"haul", "gauze", "faucet"});
         put("aw", new String[] {"saw", "hawk", "paws"});
         put("ay", new String[] {"jay", "ray", "play"});
-        put("ea", new String[] {"eat", "beak", "leaf"});
-        //put("ea", new String[] {"head", "bear", "pears"});
+        put("ea1", new String[] {"eat", "beak", "leaf"});
+        put("ea2", new String[] {"head", "bear", "pears"});
         put("ee", new String[] {"bee", "tree", "jeep"});
         put("ew", new String[] {"flew", "blew", "chew"});
         put("oa", new String[] {"goat", "boat", "coat"});
         put("oi", new String[] {"coin", "point", "choice"});
-        put("oo", new String[] {"zoo", "moon", "hoof"});
-        //put("oo", new String[] {"cook", "woof", "foot"});
+        put("oo1", new String[] {"zoo", "moon", "hoof"});
+        put("oo2", new String[] {"cook", "wood", "foot"});
         put("ou", new String[] {"house", "mouth", "proud"});
-        put("ow", new String[] {"blow", "snow", "throw"});
-        //put("ow", new String[] {"owl", "cow", "town"});
+        put("ow1", new String[] {"blow", "snow", "throw"});
+        put("ow2", new String[] {"owl", "cow", "town"});
         put("oy", new String[] {"boy", "toys", "oyster"});
 
-        put("ar", new String[] {"arm", "stars", "barn"});
-        //put("ar", new String[] {"bare", "mare", "hare"});
+        put("ar1", new String[] {"arm", "stars", "barn"});
+        put("ar2", new String[] {"bare", "mare", "hare"});
         put("er", new String[] {"fern", "tiger", "zipper"});
         put("ir", new String[] {"bird", "girl", "shirt"});
-        put("or", new String[] {"corn", "horns", "orca"});
-        //put("or", new String[] {"work", "worms", "tractor"});
+        put("or1", new String[] {"corn", "horns", "orca"});
+        put("or2", new String[] {"work", "worms", "tractor"});
         put("ur", new String[] {"burn", "surf", "nurse"});
 
         put("a", new String[] {"sofa", "zebra", "afraid"});

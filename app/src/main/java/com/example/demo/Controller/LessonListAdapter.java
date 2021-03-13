@@ -59,8 +59,12 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getTextView().setText(lessons[position]);
-        String imageName = "topic_page_" + lessons[position] + position;
+        String lessonName = lessons[position];
+        if (Character.isDigit(lessonName.toCharArray()[lessonName.length()-1])) {
+            lessonName = lessonName.substring(0, lessonName.length()-1);
+        }
+        holder.getTextView().setText(lessonName);
+        String imageName = "topic_page_" + lessonName + position;
         int id = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName() );
         holder.getImageView().setImageResource(id);
     }
