@@ -231,7 +231,14 @@ public class Lesson extends AppCompatActivity {
         Intent home = new Intent(Lesson.this, MainActivity.class);
         startActivity(home);
     }
-    public void onBack(View view) { onBackPressed(); }
+
+
+    public void onBack(View view) {
+        Intent topic = new Intent(Lesson.this, Topic.class);
+        Intent previous = getIntent();
+        topic.putExtra("topicName", previous.getStringExtra("topicName"));
+        startActivity(topic);
+    }
 
     public void buttonVisibility(){
         quizButton = findViewById(R.id.quiz_button);
