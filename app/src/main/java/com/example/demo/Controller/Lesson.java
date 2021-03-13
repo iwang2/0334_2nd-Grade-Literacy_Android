@@ -113,9 +113,9 @@ public class Lesson extends AppCompatActivity {
         Intent lessonIntent = getIntent();
         int position = lessonIntent.getIntExtra("position", 0);
         String[] lessons = lessonIntent.getStringArrayExtra("lessons");
-        lessonNameString = position > 0 ? lessons[position-1] : lessons[position];
+        lessonNameString = position > 0 ? lessons[--position] : lessons[position];
         lessonIntent.putExtra("lessonName", lessonNameString);
-        lessonIntent.putExtra("position", position-1);
+        lessonIntent.putExtra("position", position);
         startActivity(lessonIntent);
     }
 
@@ -124,9 +124,9 @@ public class Lesson extends AppCompatActivity {
         Intent lessonIntent = getIntent();
         int position = lessonIntent.getIntExtra("position", 0);
         String[] lessons = lessonIntent.getStringArrayExtra("lessons");
-        lessonNameString = position < lessons.length-1 ? lessons[position+1] : lessons[position];
+        lessonNameString = position < lessons.length-1 ? lessons[++position] : lessons[position];
         lessonIntent.putExtra("lessonName", lessonNameString);
-        lessonIntent.putExtra("position", position+1);
+        lessonIntent.putExtra("position", position);
         startActivity(lessonIntent);
     }
 
