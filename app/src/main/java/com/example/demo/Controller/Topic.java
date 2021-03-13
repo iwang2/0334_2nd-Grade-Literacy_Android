@@ -49,6 +49,7 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         topicName = topicIntent.getStringExtra("topicName");
 
         String[] lessons = topicToLesson.get(topicName);
+
         adapter = new LessonListAdapter(this, lessons);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
@@ -64,6 +65,8 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         String lessonName = adapter.getLessonName(position);
         Intent lessonIntent = new Intent(Topic.this, Lesson.class);
         lessonIntent.putExtra("lessonName", lessonName);
+        Intent topicIntent = getIntent();
+        lessonIntent.putExtra("topicName", topicIntent.getStringExtra("topicName"));
         startActivity(lessonIntent);
     }
 
