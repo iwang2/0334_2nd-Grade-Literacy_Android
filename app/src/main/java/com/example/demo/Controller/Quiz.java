@@ -62,7 +62,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         put("kn", new HashSet<>(Arrays.asList("knee", "knit", "knives", "knock", "knot", "know", "knuckles")));
         put("wr", new HashSet<>(Arrays.asList("wrap", "wreck", "wrenches", "wrinkle", "write", "wrong")));
         put("sc", new HashSet<>(Arrays.asList("crescents", "scene", "scent", "science", "scissors")));
-        put("ck", new HashSet<>(Arrays.asList("backpack", "bricklayer", "rocket", "sick", "snack", "thick", "trick", "wick")));
+//        put("ck", new HashSet<>(Arrays.asList("backpack", "bricklayer", "rocket", "sick", "snack", "thick", "trick", "wick")));
         put("ay", new HashSet<>(Arrays.asList("birthday", "jay", "play", "ray")));
 //        put("au", new HashSet<>(Arrays.asList("caught")));
         put("ew", new HashSet<>(Arrays.asList("chew", "crew_cut")));

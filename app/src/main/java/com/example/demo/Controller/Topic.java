@@ -54,8 +54,6 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         recyclerView.setAdapter(adapter);
 
         buttonVisibility();
-
-
     }
 
     @Override
