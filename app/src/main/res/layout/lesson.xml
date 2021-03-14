@@ -28,7 +28,7 @@
         android:id="@+id/previousLessonButton"
         android:layout_width="60dp"
         android:layout_height="55dp"
-        android:onClick="onBack"
+        android:onClick="onPrev"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/imageLeft"
         app:layout_constraintEnd_toStartOf="@+id/imageMid"
@@ -44,7 +44,7 @@
         android:id="@+id/nextLessonButton"
         android:layout_width="60dp"
         android:layout_height="55dp"
-        android:onClick="onBack"
+        android:onClick="onNext"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/imageRight"
 
