@@ -78,29 +78,6 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         put("ur", new HashSet<>(Arrays.asList("burn", "burrito", "burro", "hamburger")));
     }};
 
-//    Map<String, Integer> coinsGet = new HashMap<String, Integer>() {{
-//        put("scr", 0);
-//        put("spl", 0);
-//        put("spr", 0);
-//        put("str", 0);
-//        put("kn", 0);
-//        put("wr", 0);
-//        put("sc", 0);
-//        put("ck", 0);
-//        put("ay", 0);
-////        put("au", 0);
-//        put("ew", 0);
-//        put("oi", 0);
-////        put("ow", 0);
-//        put("ea", 0);
-//        put("oy", 0);
-//        put("ar", 0);
-//        put("er", 0);
-//        put("ir", 0);
-//        put("or", 0);
-//        put("ur", 0);
-//    }};
-
     int correctButtonId;
     boolean isTopic;
     String lastTopicName;
