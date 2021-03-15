@@ -20,22 +20,22 @@ public class PiggyBank extends AppCompatActivity {
         ImageView one_coin_2 = (ImageView) findViewById(R.id.one_coin_2);
         ImageView one_coin_3 = (ImageView) findViewById(R.id.one_coin_3);
         ImageView one_coin_4 = (ImageView) findViewById(R.id.one_coin_4);
-        if (Model.coins % 5 == 0) {
+        if (Model.getCoins() % 5 == 0) {
             one_coin_1.setVisibility(View.INVISIBLE);
             one_coin_2.setVisibility(View.INVISIBLE);
             one_coin_3.setVisibility(View.INVISIBLE);
             one_coin_4.setVisibility(View.INVISIBLE);
         }
-        if (Model.coins % 5 == 1) {
+        if (Model.getCoins() % 5 == 1) {
             one_coin_2.setVisibility(View.INVISIBLE);
             one_coin_3.setVisibility(View.INVISIBLE);
             one_coin_4.setVisibility(View.INVISIBLE);
         }
-        if (Model.coins % 5 == 2) {
+        if (Model.getCoins() % 5 == 2) {
             one_coin_3.setVisibility(View.INVISIBLE);
             one_coin_4.setVisibility(View.INVISIBLE);
         }
-        if (Model.coins % 5 == 3) {
+        if (Model.getCoins() % 5 == 3) {
             one_coin_4.setVisibility(View.INVISIBLE);
         }
         ImageView five_coin_1 = (ImageView) findViewById(R.id.five_coin_2);
@@ -43,44 +43,44 @@ public class PiggyBank extends AppCompatActivity {
         ImageView five_coin_3 = (ImageView) findViewById(R.id.five_coin_4);
         ImageView five_coin_4 = (ImageView) findViewById(R.id.five_coin_3);
 
-        if (Model.coins % 25 < 5) {
+        if (Model.getCoins() % 25 < 5) {
             five_coin_1.setVisibility(View.INVISIBLE);
             five_coin_2.setVisibility(View.INVISIBLE);
             five_coin_3.setVisibility(View.INVISIBLE);
             five_coin_4.setVisibility(View.INVISIBLE);
         }
-        if (Model.coins % 25 < 10) {
+        if (Model.getCoins() % 25 < 10) {
             five_coin_2.setVisibility(View.INVISIBLE);
             five_coin_3.setVisibility(View.INVISIBLE);
             five_coin_4.setVisibility(View.INVISIBLE);
         }
-        if (Model.coins % 25 < 15) {
+        if (Model.getCoins() % 25 < 15) {
             five_coin_3.setVisibility(View.INVISIBLE);
             five_coin_4.setVisibility(View.INVISIBLE);
         }
-        if (Model.coins % 25 < 20) {
+        if (Model.getCoins() % 25 < 20) {
             five_coin_4.setVisibility(View.INVISIBLE);
         }
         ImageView bag_coin_1 = (ImageView) findViewById(R.id.bag_coin_1);
         ImageView bag_coin_2 = (ImageView) findViewById(R.id.bag_coin_2);
         ImageView bag_coin_3 = (ImageView) findViewById(R.id.bag_coin_3);
         ImageView bag_coin_4 = (ImageView) findViewById(R.id.bag_coin_4);
-        if (Model.coins % 125 < 25) {
+        if (Model.getCoins() % 125 < 25) {
             bag_coin_1.setVisibility(View.INVISIBLE);
             bag_coin_2.setVisibility(View.INVISIBLE);
             bag_coin_3.setVisibility(View.INVISIBLE);
             bag_coin_4.setVisibility(View.INVISIBLE);
         }
-        if (Model.coins % 125 < 50) {
+        if (Model.getCoins() % 125 < 50) {
             bag_coin_2.setVisibility(View.INVISIBLE);
             bag_coin_3.setVisibility(View.INVISIBLE);
             bag_coin_4.setVisibility(View.INVISIBLE);
         }
-        if (Model.coins % 125 < 75) {
+        if (Model.getCoins() % 125 < 75) {
             bag_coin_3.setVisibility(View.INVISIBLE);
             bag_coin_4.setVisibility(View.INVISIBLE);
         }
-        if (Model.coins % 125 < 100) {
+        if (Model.getCoins() % 125 < 100) {
             bag_coin_4.setVisibility(View.INVISIBLE);
         }
 
