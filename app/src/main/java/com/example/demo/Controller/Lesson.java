@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.Random;
 
 public class Lesson extends AppCompatActivity {
-    LessonListAdapter adapter;
     ImageButton quizButton;
     ImageButton repeatButton;
     String lessonNameString;

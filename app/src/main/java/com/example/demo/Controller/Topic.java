@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Topic extends AppCompatActivity implements LessonListAdapter.ItemClickListener {
+public class Topic extends AppCompatActivity implements ItemClickListener {
     LessonListAdapter adapter;
     ImageButton quizButton;
     ImageButton repeatButton;
