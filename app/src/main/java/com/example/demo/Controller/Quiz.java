@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import Model.Model;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -100,6 +101,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         put("u", new HashSet<>(Arrays.asList("brush", "bucket", "bug", "bus", "cut", "jump", "muzzle", "trunk")));
     }};
 
+
     int correctButtonId;
     int attempts = 0;
     boolean isTopic;
@@ -178,6 +180,10 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         TextView result = findViewById(R.id.result);
         if (v.getId() == correctButtonId) {
             result.setText("correct");
+            if (attempts == 0 && Model.getCoinsFromMap(lastLessonName) < 10) {
+                Model.addCoins();
+                Model.setCoinsFromMap(lastLessonName, 1);
+            }
             nextQuestion();
         } else {
             attempts++;
@@ -211,6 +217,11 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
     public void onRepeat(View view){
         playSound(choices);
+    }
+
+    public void onBank(View view) {
+        Intent bank = new Intent(Quiz.this, PiggyBank.class);
+        startActivity(bank);
     }
 
     public void buttonVisibility(){

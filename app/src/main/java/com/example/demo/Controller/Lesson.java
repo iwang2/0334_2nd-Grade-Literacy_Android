@@ -271,4 +271,9 @@ public class Lesson extends AppCompatActivity {
         quizIntent.putExtra("name", lessonNameString);
         startActivity(quizIntent);
     }
+    public void onBank(View view) {
+        Intent bank = new Intent(Lesson.this, PiggyBank.class);
+        startActivity(bank);
+    }
+
 }
