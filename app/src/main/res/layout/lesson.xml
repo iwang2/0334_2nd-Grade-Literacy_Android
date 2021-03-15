@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <include
         android:id="@+id/include4"
@@ -56,28 +57,28 @@
         app:srcCompat="@drawable/next_lesson" />
 
     <ImageView
-            android:id="@+id/imageMid"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/include4"
-            app:layout_constraintTop_toBottomOf="@+id/lesson_title"
-            app:layout_constraintVertical_bias="0.7"/>
+        android:id="@+id/imageMid"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/include4"
+        app:layout_constraintTop_toBottomOf="@+id/lesson_title"
+        app:layout_constraintVertical_bias="0.7" />
 
-        <TextView
-            android:id="@+id/myImageViewTextMid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comic_sans"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/include4"
-            app:layout_constraintTop_toBottomOf="@+id/imageMid"
-            app:layout_constraintVertical_bias="0"
-            android:text="Image description"
-            android:textColor="#000000" />
+    <TextView
+        android:id="@+id/myImageViewTextMid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comic_sans"
+        android:text="Image description"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/include4"
+        app:layout_constraintTop_toBottomOf="@+id/imageMid"
+        app:layout_constraintVertical_bias="0" />
 
     <ImageView
         android:id="@+id/imageLeft"
@@ -124,14 +125,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/comic_sans"
+        android:text="Image description"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageMid"
         app:layout_constraintTop_toBottomOf="@+id/imageRight"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintVertical_bias="0"
-        android:text="Image description"
-        android:textColor="#000000" />
+        app:layout_constraintVertical_bias="0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

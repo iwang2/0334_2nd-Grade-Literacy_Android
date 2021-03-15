@@ -52,7 +52,6 @@ public class Topic extends AppCompatActivity implements ItemClickListener {
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
-
         buttonVisibility();
     }
 

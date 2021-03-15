@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConsonantsVowels extends AppCompatActivity implements TopicListAdapter.ItemClickListener {
+public class ConsonantsVowels extends AppCompatActivity implements ItemClickListener {
 
     TopicListAdapter adapter;
 
