@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,4 +50,40 @@ public class Model {
     public static void setCoinsFromMap(String key, int add) {
         coinsGet.put(key, coinsGet.get(key) + add);
     }
+
+    public static Map<String, ArrayList<Integer>> puzzleEarned = new HashMap<String, ArrayList<Integer>>() {{
+        put("c0", new ArrayList<>());
+        put("c1", new ArrayList<>());
+        put("g0", new ArrayList<>());
+        put("g1", new ArrayList<>());
+        put("g2", new ArrayList<>());
+        put("scr", new ArrayList<>());
+        put("spl", new ArrayList<>());
+        put("spr", new ArrayList<>());
+        put("str", new ArrayList<>());
+        put("kn", new ArrayList<>());
+        put("wr", new ArrayList<>());
+        put("sc", new ArrayList<>());
+        put("gh", new ArrayList<>());
+        put("ay", new ArrayList<>());
+//        put("au", new ArrayList<>());
+        put("ew", new ArrayList<>());
+        put("oi", new ArrayList<>());
+//        put("ow", new ArrayList<>());
+        put("ea", new ArrayList<>());
+        put("oy", new ArrayList<>());
+        put("ar0", new ArrayList<>());
+        put("ar1", new ArrayList<>());
+        put("er", new ArrayList<>());
+        put("ir", new ArrayList<>());
+        put("or0", new ArrayList<>());
+        put("or1",new ArrayList<>());
+        put("ur", new ArrayList<>());
+        put("a", new ArrayList<>());
+        put("e", new ArrayList<>());
+        put("i", new ArrayList<>());
+        put("o", new ArrayList<>());
+        put("u", new ArrayList<>());
+    }};
+
 }
