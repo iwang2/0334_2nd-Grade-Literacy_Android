@@ -166,7 +166,11 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             lessonName = quizIntent.getStringExtra("name");
             isTopic = false;
         }
-        question.setText(lessonName);
+        String trimmedLessonName = lessonName;
+        if (Character.isDigit(lessonName.toCharArray()[lessonName.length()-1])) {
+            trimmedLessonName = lessonName.substring(0, lessonName.length()-1);
+        }
+        question.setText(trimmedLessonName);
         Set<String> answerList = lessonToAnswers.get(lessonName);
         Set<String> wordBankCopy = wordBank;
         for (String answer : answerList) {
@@ -194,29 +198,31 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
 
         //load all imageRes
-        ImageView p = findViewById(R.id.puzzle);
-        ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
-        if (al.size() == 12) {
-            p.setImageResource(getResources().getIdentifier(String.format("@drawable/%s_composite", lessonName), null, getPackageName()));
-        } else {
-            List<Drawable> puzzles = new ArrayList<>();
-            for (int row = 0; row < 4; row++) {
-                for (int col = 0; col < 3; col++) {
-                    String filename = String.format("@drawable/%s%d%d", lessonName, row, col);
-                    System.out.println(filename);
-                    Drawable d = getResources().getDrawable(getResources().getIdentifier(filename, null, getPackageName()));
-                    d.setAlpha(0);
-                    puzzles.add(d);
+        if (lessonName == "spr" || lessonName == "spl" || lessonName == "str") {
+            ImageView p = findViewById(R.id.puzzle);
+            ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
+            if (al.size() == 12) {
+                p.setImageResource(getResources().getIdentifier(String.format("@drawable/%s_composite", lessonName), null, getPackageName()));
+            } else {
+                List<Drawable> puzzles = new ArrayList<>();
+                for (int row = 0; row < 4; row++) {
+                    for (int col = 0; col < 3; col++) {
+                        String filename = String.format("@drawable/%s%d%d", lessonName, row, col);
+                        System.out.println(filename);
+                        Drawable d = getResources().getDrawable(getResources().getIdentifier(filename, null, getPackageName()));
+                        d.setAlpha(0);
+                        puzzles.add(d);
+                    }
                 }
-            }
-            Drawable[] drawables = new Drawable[12];
-            drawables = puzzles.toArray(drawables);
-            ld = new LayerDrawable(drawables);
+                Drawable[] drawables = new Drawable[12];
+                drawables = puzzles.toArray(drawables);
+                ld = new LayerDrawable(drawables);
 
-            p.setImageDrawable(ld);
-            //load the earned puzzle
-            for (int puzzle : al) {
-                ld.getDrawable(puzzle).setAlpha(255);
+                p.setImageDrawable(ld);
+                //load the earned puzzle
+                for (int puzzle : al) {
+                    ld.getDrawable(puzzle).setAlpha(255);
+                }
             }
         }
 
@@ -285,7 +291,9 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         while (Model.puzzleEarned.get(lessonName).contains(r)) {
             r = rand.nextInt(12);
         }
-        ld.getDrawable(r).setAlpha(255);
+        if (lessonName == "spr" || lessonName == "spl" || lessonName == "str") {
+            ld.getDrawable(r).setAlpha(255);
+        }
         return r;
     }
 
