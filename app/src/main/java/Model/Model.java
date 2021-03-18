@@ -1,7 +1,9 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Model {
@@ -57,21 +59,34 @@ public class Model {
         put("g0", new ArrayList<>());
         put("g1", new ArrayList<>());
         put("g2", new ArrayList<>());
+
         put("scr", new ArrayList<>());
         put("spl", new ArrayList<>());
         put("spr", new ArrayList<>());
         put("str", new ArrayList<>());
-        put("kn", new ArrayList<>());
-        put("wr", new ArrayList<>());
-        put("sc", new ArrayList<>());
+
         put("gh", new ArrayList<>());
+        put("kn", new ArrayList<>());
+        put("sc", new ArrayList<>());
+        put("wr", new ArrayList<>());
+
+        put("ai", new ArrayList<>());
+        put("au", new ArrayList<>());
+        put("aw", new ArrayList<>());
         put("ay", new ArrayList<>());
-//        put("au", new ArrayList<>());
+        put("ea0", new ArrayList<>());
+        put("ea1", new ArrayList<>());
+        put("ee", new ArrayList<>());
         put("ew", new ArrayList<>());
+        put("oa", new ArrayList<>());
         put("oi", new ArrayList<>());
-//        put("ow", new ArrayList<>());
-        put("ea", new ArrayList<>());
+        put("oo0", new ArrayList<>());
+        put("oo1", new ArrayList<>());
+        put("ou", new ArrayList<>());
+        put("ow0", new ArrayList<>());
+        put("ow1", new ArrayList<>());
         put("oy", new ArrayList<>());
+
         put("ar0", new ArrayList<>());
         put("ar1", new ArrayList<>());
         put("er", new ArrayList<>());
@@ -79,11 +94,11 @@ public class Model {
         put("or0", new ArrayList<>());
         put("or1",new ArrayList<>());
         put("ur", new ArrayList<>());
+
         put("a", new ArrayList<>());
         put("e", new ArrayList<>());
         put("i", new ArrayList<>());
         put("o", new ArrayList<>());
         put("u", new ArrayList<>());
     }};
-
 }
