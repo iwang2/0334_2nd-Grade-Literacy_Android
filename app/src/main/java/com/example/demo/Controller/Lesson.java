@@ -149,7 +149,9 @@ public class Lesson extends AppCompatActivity {
                 break;
             case "ir": soundsList = Arrays.asList(R.raw.bird, R.raw.girl,R.raw.shirt);
                 break;
-            case "or": soundsList = Arrays.asList(R.raw.corn, R.raw.orca); //ADD Horns
+            case "or0": soundsList = Arrays.asList(R.raw.corn, R.raw.orca); //ADD Horns
+                break;
+            case "or1": soundsList = Arrays.asList(R.raw.work, R.raw.worms,R.raw.tractor);
                 break;
             case "ur": soundsList = Arrays.asList(R.raw.burn); //ADD Surf/Nurse
                 break;
@@ -166,6 +168,7 @@ public class Lesson extends AppCompatActivity {
                 break;
         }
         return soundsList;
+
     }
 
     Map<String, String[]> lessonToExamples= new HashMap<String, String[]>() {{
