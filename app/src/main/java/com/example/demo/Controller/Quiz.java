@@ -87,42 +87,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             "brush", "bucket", "bug", "bus", "cut", "jump", "muzzle", "trunk"
         ));
 
-<<<<<<< HEAD
-    Map<String, Set<String>> lessonToAnswers = new HashMap<String, Set<String>>() {
-        {
-            put("scr", new HashSet<>(Arrays.asList("scraper", "scratch", "scream", "screwdriver", "screws", "scrub", "scrubs")));
-            put("spl", new HashSet<>(Arrays.asList("splash", "splat", "splatter", "splendid", "splinter", "split", "splits")));
-            put("spr", new HashSet<>(Arrays.asList("sprain", "sprawl", "spray", "spread", "sprinkler", "sprinters", "sprout", "spruce")));
-            put("str", new HashSet<>(Arrays.asList("straight", "straw", "streak", "street_sweeper", "string", "strings", "stripes", "strong", "structures")));
-            put("kn", new HashSet<>(Arrays.asList("knee", "knit", "knives", "knock", "knot", "know", "knuckles")));
-            put("wr", new HashSet<>(Arrays.asList("wrap", "wreck", "wrenches", "wrinkle", "write", "wrong")));
-            put("sc", new HashSet<>(Arrays.asList("crescents", "scene", "scent", "science", "scissors")));
-            put("ck", new HashSet<>(Arrays.asList("backpack", "bricklayer", "rocket", "sick", "snack", "thick", "trick", "wick")));
-            put("ay", new HashSet<>(Arrays.asList("birthday", "jay", "play", "ray")));
-//        put("au", new HashSet<>(Arrays.asList("caught")));
-            put("ew", new HashSet<>(Arrays.asList("chew", "crew_cut")));
-            put("oi", new HashSet<>(Arrays.asList("choice", "oink_oink")));
-//        put("ow", new HashSet<>(Arrays.asList("cowboy")));
-            put("ea", new HashSet<>(Arrays.asList("feather", "spread", "weather")));
-            put("oy", new HashSet<>(Arrays.asList("oyster")));
-            put("ar", new HashSet<>(Arrays.asList("arm", "bare", "barn", "cardinal", "go_kart", "harp", "mare", "scare", "stars")));
-            put("er", new HashSet<>(Arrays.asList("dozer", "fern", "clover", "mermaid", "zipper")));
-            put("ir", new HashSet<>(Arrays.asList("bird", "birthday", "circle", "girl", "skirt")));
-            put("or", new HashSet<>(Arrays.asList("porcupine", "work", "corn", "gator", "hornet", "mirror", "orca", "uniforms")));
-            put("ur", new HashSet<>(Arrays.asList("burn", "burrito", "burro", "hamburger")));
-            put("c0", new HashSet<>(Arrays.asList("cake", "canary", "candy", "car", "cat", "cow", "cub", "cut")));
-            put("c1", new HashSet<>(Arrays.asList("balance", "celery", "face", "ice", "sauce_pan", "tricycle", "unicycle")));
-            put("g0", new HashSet<>(Arrays.asList("gate", "gazelle", "go_kart", "goal", "goat", "gold", "goose", "grapes")));
-            put("g1", new HashSet<>(Arrays.asList("bug", "dig", "dog", "flag", "frog", "hog", "plug", "wig")));
-            put("g2", new HashSet<>(Arrays.asList("fridge", "gingerbread_man", "giraffe", "hedge_clippers", "syringe")));
-            put("a", new HashSet<>(Arrays.asList("afraid", "canoe", "gazelle", "oval", "panda", "sofa", "tuba", "zebra")));
-            put("e", new HashSet<>(Arrays.asList("camel", "garden", "kitten", "mittens", "oven", "piglet", "rocket", "shovel")));
-            put("i", new HashSet<>(Arrays.asList("artist", "gossip", "muffins_", "nostril", "pencil", "rabbit", "robin", "tennis")));
-            put("o", new HashSet<>(Arrays.asList("glove", "lion", "love", "monkey", "mother", "oven", "shovel", "wagon")));
-            put("u", new HashSet<>(Arrays.asList("brush", "bucket", "bug", "bus", "cut", "jump", "muzzle", "trunk")));
-        }
-    };
-=======
+
     Map<String, Set<String>> lessonToAnswers = new HashMap<String, Set<String>>() {{
         put("c0", new HashSet<>(Arrays.asList("cake", "canary", "candy", "car", "cat", "cow", "cub", "cut")));
         put("c1", new HashSet<>(Arrays.asList("balance", "celery", "face", "ice", "sauce_pan", "tricycle", "unicycle")));
@@ -173,7 +138,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     }};
 
 
->>>>>>> 324310f03fafa4366cfc3104788114a96f8988c3
+
     int correctButtonId;
     int attempts = 0;
     boolean isTopic;
