@@ -200,7 +200,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
 
         //load all imageRes
-        if (lessonName == "spr" || lessonName == "spl" || lessonName == "str") {
+        if (lessonName.equals("spr") || lessonName.equals("spl") || lessonName.equals("str")) {
             ImageView p = findViewById(R.id.puzzle);
             ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
             if (al.size() == 12) {
@@ -293,7 +293,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         while (Model.puzzleEarned.get(lessonName).contains(r)) {
             r = rand.nextInt(12);
         }
-        if (lessonName == "spr" || lessonName == "spl" || lessonName == "str") {
+        if (lessonName.equals("spr") || lessonName.equals("spl") || lessonName.equals("str")) {
             ld.getDrawable(r).setAlpha(255);
         }
         return r;
