@@ -86,6 +86,12 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             put("i", new HashSet<>(Arrays.asList("artist", "gossip", "muffins_", "nostril", "pencil", "rabbit", "robin", "tennis")));
             put("o", new HashSet<>(Arrays.asList("glove", "lion", "love", "monkey", "mother", "oven", "shovel", "wagon")));
             put("u", new HashSet<>(Arrays.asList("brush", "bucket", "bug", "bus", "cut", "jump", "muzzle", "trunk")));
+            put("ai", new HashSet<>(Arrays.asList("afraid", "mermaid", "nail", "paint", "rainbow", "sail", "snail", "tail")));
+            put("ea_long", new HashSet<>(Arrays.asList("beach", "beagle", "beak", "beaver", "eat", "leaf", "read", "steal")));
+            put("ee", new HashSet<>(Arrays.asList("bee", "cheek", "feet", "freeze", "geese", "jeep", "seed", "sheep", "tree")));
+            put("oa", new HashSet<>(Arrays.asList("boat", "coat", "float", "foal", "goat", "soap", "toad", "toaster")));
+            put("oo0", new HashSet<>(Arrays.asList("boots", "broom", "goose", "moon", "moose", "spoon", "stool", "tools", "tooth", "zoo")));
+            put("oo1", new HashSet<>(Arrays.asList("bigfoot", "book", "cook", "cookies", "foot", "football", "hoodie", "look", "wood")));
         }
     };
     int correctButtonId;
