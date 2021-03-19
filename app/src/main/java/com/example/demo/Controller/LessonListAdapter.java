@@ -17,6 +17,8 @@ import com.example.demo.R;
 
 import java.util.ArrayList;
 
+import Model.Model;
+
 public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.ViewHolder> {
     private String[] lessons;
     private ItemClickListener listener;
@@ -30,18 +32,25 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView textView;
         private final ImageView imageView;
+        private final ImageView check_mark;
+        private final ImageView[] lesson_stars;
+
 
         public ViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
             textView = (TextView) view.findViewById(R.id.lesson_list_text);
             imageView = (ImageView) view.findViewById(R.id.lesson_list_image);
+            lesson_stars = new ImageView[] {view.findViewById(R.id.lesson_list_star0), view.findViewById(R.id.lesson_list_star1), view.findViewById(R.id.lesson_list_star2), view.findViewById(R.id.lesson_list_star3), view.findViewById(R.id.lesson_list_star4)};
+            check_mark = view.findViewById(R.id.check);
         }
 
         public TextView getTextView() {
             return textView;
         }
         public ImageView getImageView() {return imageView; }
+        public ImageView[] getLesson_stars() {return lesson_stars; }
+        public ImageView getCheck_mark() {return check_mark; }
 
         @Override
         public void onClick(View v) {
@@ -67,6 +76,18 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Vi
         String imageName = "topic_page_" + lessonName + position;
         int id = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName() );
         holder.getImageView().setImageResource(id);
+
+        boolean visited = Model.visited(lessonName);
+        if (visited) {
+            holder.getCheck_mark().setImageResource(context.getResources().getIdentifier("check_mark", "drawable", context.getPackageName()));
+        }
+
+        ImageView[] arr = holder.getLesson_stars();
+        int goldStarCount = Model.getGoldStarCount(lessonName);
+        for (int i = 0; i < goldStarCount; i++) {
+            arr[i].setImageResource(context.getResources().getIdentifier("@drawable/gold_star", null, context.getPackageName()));
+        }
+
     }
 
     @Override
