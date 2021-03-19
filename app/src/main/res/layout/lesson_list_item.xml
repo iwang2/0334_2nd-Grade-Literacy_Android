@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="175dp"
     android:layout_height="125dp"
     android:layout_gravity="center"
@@ -9,31 +10,101 @@
     app:cardElevation="0dp"
     app:contentPadding="0dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="a"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:fontFamily="@font/comic_sans"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/lesson_list_text"
             android:layout_width="92dp"
-            android:layout_height="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/comic_sans"
             android:gravity="center"
             android:text="a"
-            android:fontFamily="@font/comic_sans"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/lesson_list_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="?android:attr/activatedBackgroundIndicator" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/lesson_list_star0"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/lesson_list_star1"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lesson_list_star0"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/lesson_list_star2"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lesson_list_star1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lesson_list_star2"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/lesson_list_star3"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lesson_list_star2"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/lesson_list_star4"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView16"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/check"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

@@ -1,6 +1,8 @@
 package com.example.demo.Controller;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.media.AudioAttributes;
@@ -87,7 +89,6 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             "brush", "bucket", "bug", "bus", "cut", "jump", "muzzle", "trunk"
         ));
 
-
     Map<String, Set<String>> lessonToAnswers = new HashMap<String, Set<String>>() {{
         put("c0", new HashSet<>(Arrays.asList("cake", "canary", "candy", "car", "cat", "cow", "cub", "cut")));
         put("c1", new HashSet<>(Arrays.asList("balance", "celery", "face", "ice", "sauce_pan", "tricycle", "unicycle")));
@@ -138,7 +139,6 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     }};
 
 
-
     int correctButtonId;
     int attempts = 0;
     boolean isTopic;
@@ -148,6 +148,8 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     LayerDrawable ld;
     Random rand;
     boolean isTouchable;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,6 +207,22 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
             if (al.size() == 12) {
                 p.setImageResource(getResources().getIdentifier(String.format("@drawable/%s_composite", lessonName), null, getPackageName()));
+                boolean visited = Model.visited(lessonName);
+                if (!visited) {
+                    Intent completedPz = new Intent(Quiz.this, CompletedPuzzle.class);
+                    completedPz.putExtra("lessonName", lessonName);
+                    Model.visit(lessonName);
+                    startActivity(completedPz);
+                }
+
+                p.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent completedPz = new Intent(Quiz.this, CompletedPuzzle.class);
+                        completedPz.putExtra("lessonName", lessonName);
+                        startActivity(completedPz);
+                    }
+                });
             } else {
                 List<Drawable> puzzles = new ArrayList<>();
                 for (int row = 0; row < 4; row++) {
@@ -224,6 +242,23 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 //load the earned puzzle
                 for (int puzzle : al) {
                     ld.getDrawable(puzzle).setAlpha(255);
+                }
+            }
+
+            int goldStarCount = Model.getGoldStarCount(lessonName);
+            int silverStarCount = Model.getSilverStarCount(lessonName);
+            ImageView s0 = findViewById(R.id.star0);
+            ImageView s1 = findViewById(R.id.star1);
+            ImageView s2 = findViewById(R.id.star2);
+            ImageView s3 = findViewById(R.id.star3);
+            ImageView s4 = findViewById(R.id.star4);
+            ImageView[] arr = {s0, s1, s2, s3, s4};
+
+            for (int i = 0; i < goldStarCount+silverStarCount; i++) {
+                if (i < goldStarCount) {
+                    arr[i].setImageResource(getResources().getIdentifier("@drawable/gold_star", null, getPackageName()));
+                } else {
+                    arr[i].setImageResource(getResources().getIdentifier("@drawable/silver_star", null, getPackageName()));
                 }
             }
         }
@@ -258,6 +293,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         if (v.getId() == correctButtonId) {
 //            result.setText("correct");
             ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
+            int goldStarCount = Model.getGoldStarCount(lessonName);
             if (attempts == 0) {
                 if (Model.getCoinsFromMap(lessonName) < 10) {
                     if (Model.getCoinsFromMap(lessonName) == 9) {
@@ -274,6 +310,9 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                         al.add(randomPuzzle());
                     }
                 }
+                if (goldStarCount < 5) {
+                    Model.addGoldStar(lessonName);
+                }
             } else if (attempts == 1) {
                 if (Model.getCoinsFromMap(lessonName) < 10) {
                     Model.addCoins(1);
@@ -282,6 +321,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 if (al.size() < 12) {
                     al.add(randomPuzzle());
                 }
+                Model.toSilverStar(lessonName);
             }
             nextQuestion();
         } else {
@@ -290,6 +330,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 ImageButton wrongButton = findViewById(v.getId());
                 wrongButton.setVisibility(View.INVISIBLE);
             } else if (attempts == 2) {
+                Model.toSilverStar(lessonName);
                 nextQuestion();
             }
 //            result.setText("incorrect");
