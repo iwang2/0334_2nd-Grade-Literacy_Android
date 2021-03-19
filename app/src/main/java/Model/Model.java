@@ -8,11 +8,8 @@ import java.util.Map;
 
 public class Model {
     private static int coins = 0;
-
-
-
-    public static void addCoins() {
-        coins++;
+    public static void addCoins(int add) {
+        coins = coins + add;
     }
     public static int getCoins() {return coins;}
     public static void visit(String lesson) {visited.put(lesson, true);}
@@ -148,13 +145,24 @@ public class Model {
         put("wr", 0);
         put("sc", 0);
         put("gh", 0);
+
+        put("ai", 0);
+        put("au", 0);
+        put("aw", 0);
         put("ay", 0);
-//        put("au", new HashSet<>(Arrays.asList("caught")));
+        put("ea0", 0);
+        put("ea1", 0);
+        put("ee", 0);
         put("ew", 0);
+        put("oa", 0);
         put("oi", 0);
-//        put("ow", new HashSet<>(Arrays.asList("cowboy")));
-        put("ea", 0);
+        put("oo0", 0);
+        put("oo1", 0);
+        put("ou", 0);
+        put("ow0", 0);
+        put("ow1", 0);
         put("oy", 0);
+
         put("ar0", 0);
         put("ar1", 0);
         put("er", 0);
@@ -162,6 +170,7 @@ public class Model {
         put("or0", 0);
         put("or1",0);
         put("ur", 0);
+
         put("a", 0);
         put("e", 0);
         put("i", 0);

@@ -4,85 +4,69 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demo.R;
 
 
 public class PiggyBank extends AppCompatActivity {
-
+    RecyclerView recyclerView;
+    TextView totalCoinText, leftCoinText, spentCoinText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.piggy_bank);
-        ImageView one_coin_1 = (ImageView) findViewById(R.id.one_coin_1);
-        ImageView one_coin_2 = (ImageView) findViewById(R.id.one_coin_2);
-        ImageView one_coin_3 = (ImageView) findViewById(R.id.one_coin_3);
-        ImageView one_coin_4 = (ImageView) findViewById(R.id.one_coin_4);
-        if (Model.getCoins() % 5 == 0) {
-            one_coin_1.setVisibility(View.INVISIBLE);
-            one_coin_2.setVisibility(View.INVISIBLE);
-            one_coin_3.setVisibility(View.INVISIBLE);
-            one_coin_4.setVisibility(View.INVISIBLE);
+        int[] coinsValue = new int[5];
+        int[] coinsNum = new int[5];
+        int count = 0;
+        int coins = Model.getCoins();
+        if (coins / 250 >= 1) {
+            coinsValue[count] = 250;
+            coinsNum[count] = coins / 250;
+            count++;
         }
-        if (Model.getCoins() % 5 == 1) {
-            one_coin_2.setVisibility(View.INVISIBLE);
-            one_coin_3.setVisibility(View.INVISIBLE);
-            one_coin_4.setVisibility(View.INVISIBLE);
+        if (coins % 250 / 50 >= 1) {
+            coinsValue[count] = 50;
+            coinsNum[count] = coins % 250 / 50;
+            count++;
         }
-        if (Model.getCoins() % 5 == 2) {
-            one_coin_3.setVisibility(View.INVISIBLE);
-            one_coin_4.setVisibility(View.INVISIBLE);
+        if (coins % 250 % 50 / 10 >= 1) {
+            coinsValue[count] = 10;
+            coinsNum[count] = coins % 250 % 50 / 10;
+            count++;
         }
-        if (Model.getCoins() % 5 == 3) {
-            one_coin_4.setVisibility(View.INVISIBLE);
+        if (coins % 250 % 50 % 10 / 2 >=1) {
+            coinsValue[count] = 2;
+            coinsNum[count] = coins % 250 % 50 % 10 / 2;
+            count++;
         }
-        ImageView five_coin_1 = (ImageView) findViewById(R.id.five_coin_2);
-        ImageView five_coin_2 = (ImageView) findViewById(R.id.five_coin_1);
-        ImageView five_coin_3 = (ImageView) findViewById(R.id.five_coin_4);
-        ImageView five_coin_4 = (ImageView) findViewById(R.id.five_coin_3);
+        if (coins % 250 % 50 % 10 % 2 ==1) {
+            coinsValue[count] = 1;
+            coinsNum[count] = 1;
+            count++;
+        }
+        int[] finalCoinsValue = new int[count];
+        int[] finalCoinsNum = new int[count];
+        for (int i = 0; i < count; i++) {
+            finalCoinsNum[i] = coinsNum[i];
+            finalCoinsValue[i] = coinsValue[i];
+        }
+        recyclerView = findViewById(R.id.bank_recycler);
+        BankAdapter bankAdapter = new BankAdapter(this, finalCoinsValue, finalCoinsNum);
+        recyclerView.setAdapter(bankAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        if (Model.getCoins() % 25 < 5) {
-            five_coin_1.setVisibility(View.INVISIBLE);
-            five_coin_2.setVisibility(View.INVISIBLE);
-            five_coin_3.setVisibility(View.INVISIBLE);
-            five_coin_4.setVisibility(View.INVISIBLE);
-        }
-        if (Model.getCoins() % 25 < 10) {
-            five_coin_2.setVisibility(View.INVISIBLE);
-            five_coin_3.setVisibility(View.INVISIBLE);
-            five_coin_4.setVisibility(View.INVISIBLE);
-        }
-        if (Model.getCoins() % 25 < 15) {
-            five_coin_3.setVisibility(View.INVISIBLE);
-            five_coin_4.setVisibility(View.INVISIBLE);
-        }
-        if (Model.getCoins() % 25 < 20) {
-            five_coin_4.setVisibility(View.INVISIBLE);
-        }
-        ImageView bag_coin_1 = (ImageView) findViewById(R.id.bag_coin_1);
-        ImageView bag_coin_2 = (ImageView) findViewById(R.id.bag_coin_2);
-        ImageView bag_coin_3 = (ImageView) findViewById(R.id.bag_coin_3);
-        ImageView bag_coin_4 = (ImageView) findViewById(R.id.bag_coin_4);
-        if (Model.getCoins() % 125 < 25) {
-            bag_coin_1.setVisibility(View.INVISIBLE);
-            bag_coin_2.setVisibility(View.INVISIBLE);
-            bag_coin_3.setVisibility(View.INVISIBLE);
-            bag_coin_4.setVisibility(View.INVISIBLE);
-        }
-        if (Model.getCoins() % 125 < 50) {
-            bag_coin_2.setVisibility(View.INVISIBLE);
-            bag_coin_3.setVisibility(View.INVISIBLE);
-            bag_coin_4.setVisibility(View.INVISIBLE);
-        }
-        if (Model.getCoins() % 125 < 75) {
-            bag_coin_3.setVisibility(View.INVISIBLE);
-            bag_coin_4.setVisibility(View.INVISIBLE);
-        }
-        if (Model.getCoins() % 125 < 100) {
-            bag_coin_4.setVisibility(View.INVISIBLE);
-        }
+        totalCoinText = findViewById(R.id.totalCoinText);
+        totalCoinText.setText(String.valueOf(coins));
+        leftCoinText = findViewById(R.id.leftCoinText);
+        leftCoinText.setText(String.valueOf(coins));
+        spentCoinText = findViewById(R.id.spentCoinText);
+        spentCoinText.setText("0");
+
 
     }
 

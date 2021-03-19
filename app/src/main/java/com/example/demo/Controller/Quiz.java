@@ -296,10 +296,14 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             int goldStarCount = Model.getGoldStarCount(lessonName);
             if (attempts == 0) {
                 if (Model.getCoinsFromMap(lessonName) < 10) {
-                    Model.addCoins();
-                    Model.setCoinsFromMap(lessonName, 1);
+                    if (Model.getCoinsFromMap(lessonName) == 9) {
+                        Model.addCoins(1);
+                        Model.setCoinsFromMap(lessonName, 1);
+                    } else {
+                        Model.addCoins(2);
+                        Model.setCoinsFromMap(lessonName, 2);
+                    }
                 }
-
                 if (al.size() < 12) {
                     al.add(randomPuzzle());
                     if (al.size() < 12) {
@@ -310,6 +314,10 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                     Model.addGoldStar(lessonName);
                 }
             } else if (attempts == 1) {
+                if (Model.getCoinsFromMap(lessonName) < 10) {
+                    Model.addCoins(1);
+                    Model.setCoinsFromMap(lessonName, 1);
+                }
                 if (al.size() < 12) {
                     al.add(randomPuzzle());
                 }
