@@ -234,8 +234,7 @@ public class CompletedPuzzle extends AppCompatActivity {
         Intent lessonIntent = getIntent();
         String lessonName = lessonIntent.getStringExtra("lessonName");
         poem.setText(poemBank.get(lessonName));
-        puzzle.setImageResource(getResources().getIdentifier(String.format("@drawable/%s", lessonName), null, getPackageName()));
-
+        puzzle.setImageResource(getResources().getIdentifier(String.format("@drawable/%s_composite", lessonName), null, getPackageName()));
 
     }
 
