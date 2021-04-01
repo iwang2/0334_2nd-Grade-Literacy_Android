@@ -72,18 +72,20 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Vi
         if (Character.isDigit(lessonName.toCharArray()[lessonName.length()-1])) {
             lessonName = lessonName.substring(0, lessonName.length()-1);
         }
+
         holder.getTextView().setText(lessonName);
         String imageName = "topic_page_" + lessonName + position;
         int id = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName() );
         holder.getImageView().setImageResource(id);
 
-        boolean visited = Model.visited(lessonName);
+        String lessonN = lessons[position];
+        boolean visited = Model.visited(lessonN);
         if (visited) {
             holder.getCheck_mark().setImageResource(context.getResources().getIdentifier("check_mark", "drawable", context.getPackageName()));
         }
 
         ImageView[] arr = holder.getLesson_stars();
-        int goldStarCount = Model.getGoldStarCount(lessonName);
+        int goldStarCount = Model.getGoldStarCount(lessonN);
         for (int i = 0; i < goldStarCount; i++) {
             arr[i].setImageResource(context.getResources().getIdentifier("@drawable/gold_star", null, context.getPackageName()));
         }
