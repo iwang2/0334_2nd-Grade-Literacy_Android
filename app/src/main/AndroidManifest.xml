@@ -34,7 +34,16 @@
             android:noHistory="true"
             android:screenOrientation="landscape">
         </activity>
+
         <activity android:name=".Controller.PuzzleList"
+            android:noHistory="true"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.PiggyBank"
+            android:noHistory="true"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".Controller.CompletedPuzzle"
             android:noHistory="true"
             android:screenOrientation="landscape">
         </activity>

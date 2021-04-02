@@ -58,4 +58,9 @@ public class ConsonantsVowels extends AppCompatActivity implements ItemClickList
         Intent home = new Intent(ConsonantsVowels.this, MainActivity.class);
         startActivity(home);
     }
+    public void onBank(View view) {
+        Intent bank = new Intent(ConsonantsVowels.this, PiggyBank.class);
+        startActivity(bank);
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.example.demo.Controller;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,10 +13,8 @@ import com.example.demo.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 
 public class Lesson extends AppCompatActivity {
@@ -35,13 +32,14 @@ public class Lesson extends AppCompatActivity {
         TextView lessonName = (TextView) findViewById(R.id.lesson_title);
         Intent lessonIntent = getIntent();
         lessonNameString = lessonIntent.getStringExtra("lessonName");
-        soundsList= lessonSounds(lessonNameString);
+        soundsList = lessonSounds(lessonNameString);
+        String trimmedLessonName = lessonNameString;
         if (Character.isDigit(lessonNameString.toCharArray()[lessonNameString.length()-1])) {
-            lessonNameString = lessonNameString.substring(0, lessonNameString.length()-1);
+            trimmedLessonName = lessonNameString.substring(0, lessonNameString.length()-1);
         }
-        lessonName.setText(lessonNameString);
+        lessonName.setText(trimmedLessonName);
 
-        String[] examples = lessonToExamples.get(lessonIntent.getStringExtra("lessonName"));
+        String[] examples = lessonToExamples.get(lessonNameString);
         ImageView exampleImage;
         TextView exampleDescription;
         int imageRes;
@@ -81,15 +79,15 @@ public class Lesson extends AppCompatActivity {
     public List<Integer> lessonSounds(String lessonNameString){
         List<Integer> soundsList = new ArrayList<>();
         switch (lessonNameString) {
-            case "c1": soundsList = Arrays.asList(R.raw.cat, R.raw.canary, R.raw.cake);
+            case "c0": soundsList = Arrays.asList(R.raw.cat, R.raw.canary, R.raw.cake);
                 break;
-            case "c2": soundsList = Arrays.asList(R.raw.celery, R.raw.face, R.raw.balance);
+            case "c1": soundsList = Arrays.asList(R.raw.celery, R.raw.face, R.raw.balance);
                 break;
-            case "g1": soundsList = Arrays.asList(R.raw.goose, R.raw.goat, R.raw.gold);
+            case "g0": soundsList = Arrays.asList(R.raw.goose, R.raw.goat, R.raw.gold);
                 break;
-            case "g2": soundsList = Arrays.asList(R.raw.frog, R.raw.plug, R.raw.bug);
+            case "g1": soundsList = Arrays.asList(R.raw.frog, R.raw.plug, R.raw.bug);
                 break;
-            case "g3": soundsList = Arrays.asList(R.raw.giraffe, R.raw.gingerbread_man, R.raw.fridge);
+            case "g2": soundsList = Arrays.asList(R.raw.giraffe, R.raw.gingerbread_man, R.raw.fridge);
                 break;
 
             case "scr": soundsList = Arrays.asList(R.raw.scrub, R.raw.scratch, R.raw.scream);
@@ -118,9 +116,9 @@ public class Lesson extends AppCompatActivity {
                 break;
             case "ay": soundsList = Arrays.asList(R.raw.jay, R.raw.ray, R.raw.play);
                 break;
-            case "ea1": soundsList = Arrays.asList(R.raw.eat, R.raw.beak, R.raw.leaf);
+            case "ea0": soundsList = Arrays.asList(R.raw.eat, R.raw.beak, R.raw.leaf);
                 break;
-            case "ea2": soundsList = Arrays.asList(R.raw.head, R.raw.bear, R.raw.pear);
+            case "ea1": soundsList = Arrays.asList(R.raw.head, R.raw.bear, R.raw.pear);
                 break;
             case "ee": soundsList = Arrays.asList(R.raw.bee, R.raw.tree, R.raw.jeep);
                 break;
@@ -130,28 +128,30 @@ public class Lesson extends AppCompatActivity {
                 break;
             case "oi": soundsList = Arrays.asList(R.raw.coin, R.raw.point, R.raw.choice);
                 break;
-            case "oo1": soundsList = Arrays.asList(R.raw.zoo, R.raw.moon); // Add Hoof
+            case "oo0": soundsList = Arrays.asList(R.raw.zoo, R.raw.moon); // Add Hoof
                 break;
-            case "oo2": soundsList = Arrays.asList(R.raw.cook, R.raw.wood, R.raw.foot);
+            case "oo1": soundsList = Arrays.asList(R.raw.cook, R.raw.wood, R.raw.foot);
                 break;
             case "ou": soundsList = Arrays.asList(R.raw.house, R.raw.mouth, R.raw.proud);
                 break;
-            case "ow1": soundsList = Arrays.asList(R.raw.blow, R.raw.snow, R.raw.throw1);
+            case "ow0": soundsList = Arrays.asList(R.raw.blow, R.raw.snow, R.raw.throw_);
                 break;
-            case "ow2": soundsList = Arrays.asList(R.raw.owl, R.raw.cow, R.raw.town);
+            case "ow1": soundsList = Arrays.asList(R.raw.owl, R.raw.cow, R.raw.town);
                 break;
             case "oy": soundsList = Arrays.asList(R.raw.boy, R.raw.toys, R.raw.oyster);
                 break;
 
-            case "ar1": soundsList = Arrays.asList(R.raw.arm, R.raw.stars, R.raw.barn);
+            case "ar0": soundsList = Arrays.asList(R.raw.arm, R.raw.stars, R.raw.barn);
                 break;
-            case "ar2": soundsList = Arrays.asList(R.raw.bare, R.raw.mare, R.raw.hare);
+            case "ar1": soundsList = Arrays.asList(R.raw.bare, R.raw.mare, R.raw.hare);
                 break;
             case "er": soundsList = Arrays.asList(R.raw.fern, R.raw.zipper);// ADD Tiger
                 break;
             case "ir": soundsList = Arrays.asList(R.raw.bird, R.raw.girl,R.raw.shirt);
                 break;
-            case "or": soundsList = Arrays.asList(R.raw.corn, R.raw.orca); //ADD Horns
+            case "or0": soundsList = Arrays.asList(R.raw.corn, R.raw.orca); //ADD Horns
+                break;
+            case "or1": soundsList = Arrays.asList(R.raw.work, R.raw.worms,R.raw.tractor);
                 break;
             case "ur": soundsList = Arrays.asList(R.raw.burn); //ADD Surf/Nurse
                 break;
@@ -168,14 +168,15 @@ public class Lesson extends AppCompatActivity {
                 break;
         }
         return soundsList;
+
     }
 
     Map<String, String[]> lessonToExamples= new HashMap<String, String[]>() {{
-        put("c1", new String[] {"cat", "canary", "cake"});
-        put("c2", new String[] {"celery", "face", "balance"});
-        put("g1", new String[] {"goose", "goat", "gold"});
-        put("g2", new String[] {"frog", "plug", "bug"});
-        put("g3", new String[] {"giraffe", "gingerbread man", "fridge"});
+        put("c0", new String[] {"cat", "canary", "cake"});
+        put("c1", new String[] {"celery", "face", "balance"});
+        put("g0", new String[] {"goose", "goat", "gold"});
+        put("g1", new String[] {"frog", "plug", "bug"});
+        put("g2", new String[] {"giraffe", "gingerbread man", "fridge"});
 
         put("scr", new String[] {"scrub", "scratch", "scream"});
         put("spl", new String[] {"split", "splat", "splash"});
@@ -191,25 +192,25 @@ public class Lesson extends AppCompatActivity {
         put("au", new String[] {"haul", "gauze", "faucet"});
         put("aw", new String[] {"saw", "hawk", "paws"});
         put("ay", new String[] {"jay", "ray", "play"});
-        put("ea1", new String[] {"eat", "beak", "leaf"});
-        put("ea2", new String[] {"head", "bear", "pears"});
+        put("ea0", new String[] {"eat", "beak", "leaf"});
+        put("ea1", new String[] {"head", "bear", "pears"});
         put("ee", new String[] {"bee", "tree", "jeep"});
         put("ew", new String[] {"flew", "blew", "chew"});
         put("oa", new String[] {"goat", "boat", "coat"});
         put("oi", new String[] {"coin", "point", "choice"});
-        put("oo1", new String[] {"zoo", "moon", "hoof"});
-        put("oo2", new String[] {"cook", "wood", "foot"});
+        put("oo0", new String[] {"zoo", "moon", "hoof"});
+        put("oo1", new String[] {"cook", "wood", "foot"});
         put("ou", new String[] {"house", "mouth", "proud"});
-        put("ow1", new String[] {"blow", "snow", "throw"});
-        put("ow2", new String[] {"owl", "cow", "town"});
+        put("ow0", new String[] {"blow", "snow", "throw"});
+        put("ow1", new String[] {"owl", "cow", "town"});
         put("oy", new String[] {"boy", "toys", "oyster"});
 
-        put("ar1", new String[] {"arm", "stars", "barn"});
-        put("ar2", new String[] {"bare", "mare", "hare"});
+        put("ar0", new String[] {"arm", "stars", "barn"});
+        put("ar1", new String[] {"bare", "mare", "hare"});
         put("er", new String[] {"fern", "tiger", "zipper"});
         put("ir", new String[] {"bird", "girl", "shirt"});
-        put("or1", new String[] {"corn", "horns", "orca"});
-        put("or2", new String[] {"work", "worms", "tractor"});
+        put("or0", new String[] {"corn", "horns", "orca"});
+        put("or1", new String[] {"work", "worms", "tractor"});
         put("ur", new String[] {"burn", "surf", "nurse"});
 
         put("a", new String[] {"sofa", "zebra", "afraid"});
@@ -271,4 +272,9 @@ public class Lesson extends AppCompatActivity {
         quizIntent.putExtra("name", lessonNameString);
         startActivity(quizIntent);
     }
+    public void onBank(View view) {
+        Intent bank = new Intent(Lesson.this, PiggyBank.class);
+        startActivity(bank);
+    }
+
 }
