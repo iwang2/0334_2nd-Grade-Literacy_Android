@@ -375,6 +375,11 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         startActivity(bank);
     }
 
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
+    }
+
     public void buttonVisibility(){
         quizButton = findViewById(R.id.quiz_button);
         quizButton.setVisibility(View.INVISIBLE);

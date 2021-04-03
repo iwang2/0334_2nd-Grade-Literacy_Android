@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demo.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +36,9 @@ public class PuzzleList extends AppCompatActivity implements ItemClickListener {
                 lessonToTopic.put(lesson, topic);
             }
         }
-        adapter = new PuzzleListAdapter((String[]) Model.puzzleEarned.keySet().toArray());
+        String[] puzzles = Model.puzzleEarned.keySet().toArray(new String[Model.puzzleEarned.size()]);
+        Arrays.sort(puzzles);
+        adapter = new PuzzleListAdapter(puzzles);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }

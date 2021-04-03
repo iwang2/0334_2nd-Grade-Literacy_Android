@@ -277,4 +277,9 @@ public class Lesson extends AppCompatActivity {
         startActivity(bank);
     }
 
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
+    }
+
 }

@@ -26,7 +26,7 @@ public class PuzzleListAdapter extends RecyclerView.Adapter<PuzzleListAdapter.Vi
         public ViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
-            //textView = (TextView) view.findViewById(R.id.puzzle_name);
+            textView = (TextView) view.findViewById(R.id.puzzle_name);
             card = (CardView) view.findViewById(R.id.puzzle_list_item);
         }
         @Override
@@ -37,6 +37,8 @@ public class PuzzleListAdapter extends RecyclerView.Adapter<PuzzleListAdapter.Vi
         public TextView getTextView() {
             return textView;
         }
+
+        public CardView getCard() { return card; }
     }
 
     PuzzleListAdapter(String[] puzzles) {
@@ -54,8 +56,15 @@ public class PuzzleListAdapter extends RecyclerView.Adapter<PuzzleListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //holder.getTextView().setText(puzzles[position]);
-        if (Model.puzzleEarned.get(puzzles[position]).size() < 12) {
-            
+        String lesson = puzzles[position];
+        int i = lesson.length();
+        while (i > 0 && Character.isDigit(lesson.charAt(i-1))) {
+            i--;
+        }
+        holder.getTextView().setText(lesson.substring(0, i));
+        if (Model.puzzleEarned.get(puzzles[position]).size() >= 12) {
+            //holder.getTextView().setSingleLine(false);
+            holder.getTextView().append("\nCOMPLETED");
         }
     }
 

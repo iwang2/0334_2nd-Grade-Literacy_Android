@@ -63,4 +63,8 @@ public class ConsonantsVowels extends AppCompatActivity implements ItemClickList
         startActivity(bank);
     }
 
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
+    }
 }

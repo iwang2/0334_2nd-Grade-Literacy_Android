@@ -90,7 +90,10 @@ public class Topic extends AppCompatActivity implements ItemClickListener {
         quizIntent.putExtra("ifTopic", "true");
         quizIntent.putExtra("name", topicName);
         startActivity(quizIntent);
+    }
 
-
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
     }
 }

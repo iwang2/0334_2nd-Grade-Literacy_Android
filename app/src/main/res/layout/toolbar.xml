@@ -54,9 +54,9 @@
             android:layout_width="60dp"
             android:layout_height="55dp"
             android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
             android:layout_marginBottom="5dp"
             android:onClick="onPuzzle"
-            android:layout_centerVertical="true"
             android:visibility="visible"
             app:srcCompat="@drawable/puzzle" />
 

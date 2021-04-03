@@ -66,10 +66,7 @@ public class PiggyBank extends AppCompatActivity {
         leftCoinText.setText(String.valueOf(coins));
         spentCoinText = findViewById(R.id.spentCoinText);
         spentCoinText.setText("0");
-
-
     }
-
 
     public void onHome(View view) {
         Intent home = new Intent(PiggyBank.this, MainActivity.class);
@@ -81,8 +78,12 @@ public class PiggyBank extends AppCompatActivity {
         startActivity(bank);
     }
 
-
     public void onBack(View view) {
         onBackPressed();
+    }
+
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
     }
 }
