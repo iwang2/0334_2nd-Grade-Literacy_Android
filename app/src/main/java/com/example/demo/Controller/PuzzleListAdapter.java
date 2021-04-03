@@ -8,9 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demo.R;
+
+import Model.Model;
 
 public class PuzzleListAdapter extends RecyclerView.Adapter<PuzzleListAdapter.ViewHolder> {
     private String[] puzzles;
@@ -18,11 +21,13 @@ public class PuzzleListAdapter extends RecyclerView.Adapter<PuzzleListAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView textView;
+        public CardView card;
 
         public ViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
-            textView = (TextView) view.findViewById(R.id.puzzle_name);
+            //textView = (TextView) view.findViewById(R.id.puzzle_name);
+            card = (CardView) view.findViewById(R.id.puzzle_list_item);
         }
         @Override
         public void onClick(View v) {
@@ -48,7 +53,10 @@ public class PuzzleListAdapter extends RecyclerView.Adapter<PuzzleListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getTextView().setText(puzzles[position]);
+        //holder.getTextView().setText(puzzles[position]);
+        if (Model.puzzleEarned.get(puzzles[position]).size() < 12) {
+            
+        }
     }
 
     @Override
