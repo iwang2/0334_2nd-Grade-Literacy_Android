@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onHome(View view) {
-        Intent home = new Intent(MainActivity.this, MainActivity.class);
-        startActivity(home);
+//        Intent home = new Intent(MainActivity.this, MainActivity.class);
+//        startActivity(home);
     }
 
     public void onBank(View view) {

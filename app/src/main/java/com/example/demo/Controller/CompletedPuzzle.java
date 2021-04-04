@@ -248,4 +248,13 @@ public class CompletedPuzzle extends AppCompatActivity {
     }
     public void onBack(View view) { onBackPressed(); }
 
+    public void onBank(View view) {
+        Intent bank = new Intent(CompletedPuzzle.this, PiggyBank.class);
+        startActivity(bank);
+    }
+
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
+    }
 }

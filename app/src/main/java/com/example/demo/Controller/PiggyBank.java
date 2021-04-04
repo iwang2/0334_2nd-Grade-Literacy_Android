@@ -74,8 +74,8 @@ public class PiggyBank extends AppCompatActivity {
     }
 
     public void onBank(View view) {
-        Intent bank = new Intent(PiggyBank.this, PiggyBank.class);
-        startActivity(bank);
+//        Intent bank = new Intent(PiggyBank.this, PiggyBank.class);
+//        startActivity(bank);
     }
 
     public void onBack(View view) {

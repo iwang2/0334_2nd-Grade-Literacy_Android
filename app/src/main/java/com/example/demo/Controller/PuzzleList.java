@@ -38,7 +38,7 @@ public class PuzzleList extends AppCompatActivity implements ItemClickListener {
         }
         String[] puzzles = Model.puzzleEarned.keySet().toArray(new String[Model.puzzleEarned.size()]);
         Arrays.sort(puzzles);
-        adapter = new PuzzleListAdapter(puzzles);
+        adapter = new PuzzleListAdapter(puzzles, recyclerView);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
@@ -58,5 +58,22 @@ public class PuzzleList extends AppCompatActivity implements ItemClickListener {
         intent.putExtra("topicName", topic);
 
         startActivity(intent);
+    }
+
+    public void onHome(View view) {
+        Intent home = new Intent(PuzzleList.this, MainActivity.class);
+        startActivity(home);
+    }
+    public void onBank(View view) {
+        Intent bank = new Intent(PuzzleList.this, PiggyBank.class);
+        startActivity(bank);
+    }
+
+    public void onPuzzle(View view) {
+        // nothing
+    }
+
+    public void onBack(View view) {
+        onBackPressed();
     }
 }
