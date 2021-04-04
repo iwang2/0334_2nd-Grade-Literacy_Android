@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -202,76 +203,104 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
 
         //load all imageRes
-        if (lessonName.equals("spr") || lessonName.equals("spl") || lessonName.equals("str")) {
-            ImageView p = findViewById(R.id.puzzle);
-            ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
-            if (al.size() == 12) {
-                p.setImageResource(getResources().getIdentifier(String.format("@drawable/%s_composite", lessonName), null, getPackageName()));
-                boolean visited = Model.visited(lessonName);
-                if (!visited) {
-                    Intent completedPz = new Intent(Quiz.this, CompletedPuzzle.class);
-                    completedPz.putExtra("lessonName", lessonName);
-                    Model.visit(lessonName);
-                    startActivity(completedPz);
-                }
+        ImageView p = findViewById(R.id.puzzle);
+        ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
+        if (al.size() == 12) {
 
-                p.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent completedPz = new Intent(Quiz.this, CompletedPuzzle.class);
-                        completedPz.putExtra("lessonName", lessonName);
-                        startActivity(completedPz);
-                    }
-                });
-            } else {
-                List<Drawable> puzzles = new ArrayList<>();
-                for (int row = 0; row < 4; row++) {
-                    for (int col = 0; col < 3; col++) {
-                        String filename = String.format("@drawable/%s%d%d", lessonName, row, col);
-                        System.out.println(filename);
-                        Drawable d = getResources().getDrawable(getResources().getIdentifier(filename, null, getPackageName()));
-                        d.setAlpha(0);
-                        puzzles.add(d);
-                    }
-                }
-                Drawable[] drawables = new Drawable[12];
-                drawables = puzzles.toArray(drawables);
-                ld = new LayerDrawable(drawables);
-
-                p.setImageDrawable(ld);
-                //load the earned puzzle
-                for (int puzzle : al) {
-                    ld.getDrawable(puzzle).setAlpha(255);
-                }
+            int res = getResources().getIdentifier(String.format("@drawable/%s_composite", lessonName), null, getPackageName());
+            p.setImageResource(getResources().getIdentifier("@drawable/generic_composite", null, getPackageName()));
+            if (res != 0) {
+                p.setImageResource(res);
             }
 
-            int goldStarCount = Model.getGoldStarCount(lessonName);
-            int silverStarCount = Model.getSilverStarCount(lessonName);
-            ImageView s0 = findViewById(R.id.star0);
-            ImageView s1 = findViewById(R.id.star1);
-            ImageView s2 = findViewById(R.id.star2);
-            ImageView s3 = findViewById(R.id.star3);
-            ImageView s4 = findViewById(R.id.star4);
-            ImageView[] arr = {s0, s1, s2, s3, s4};
+            boolean visited = Model.visited(lessonName);
+            if (!visited) {
+                Intent completedPz = new Intent(Quiz.this, CompletedPuzzle.class);
+                completedPz.putExtra("lessonName", lessonName);
+                Model.visit(lessonName);
+                startActivity(completedPz);
+            }
 
-            for (int i = 0; i < goldStarCount+silverStarCount; i++) {
-                if (i < goldStarCount) {
-                    arr[i].setImageResource(getResources().getIdentifier("@drawable/gold_star", null, getPackageName()));
-                } else {
-                    arr[i].setImageResource(getResources().getIdentifier("@drawable/silver_star", null, getPackageName()));
+            p.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent completedPz = new Intent(Quiz.this, CompletedPuzzle.class);
+                    completedPz.putExtra("lessonName", lessonName);
+                    startActivity(completedPz);
                 }
+            });
+        } else {
+            List<Drawable> puzzles = new ArrayList<>();
+            for (int row = 0; row < 4; row++) {
+                for (int col = 0; col < 3; col++) {
+                    int res = getResources().getIdentifier(String.format("@drawable/%s%d%d", lessonName, row, col), null, getPackageName());
+                    Drawable d = getResources().getDrawable(getResources().getIdentifier(String.format("@drawable/generic%d%d", row, col), null, getPackageName()));
+                    if (res != 0) {
+                        d = getResources().getDrawable(res);
+                    }
+                    try {
+                        d.setAlpha(0);
+                    } catch (Exception e) {
+                        d = getResources().getDrawable(getResources().getIdentifier(String.format("@drawable/generic%d%d", row, col), null, getPackageName()));
+                        d.setAlpha(0);
+                    }
+
+                    puzzles.add(d);
+                }
+            }
+            Drawable[] drawables = new Drawable[12];
+            drawables = puzzles.toArray(drawables);
+            ld = new LayerDrawable(drawables);
+
+            p.setImageDrawable(ld);
+            //load the earned puzzle
+            for (int puzzle : al) {
+                ld.getDrawable(puzzle).setAlpha(255);
             }
         }
 
-        playSound(choices);
+        int goldStarCount = Model.getGoldStarCount(lessonName);
+        int silverStarCount = Model.getSilverStarCount(lessonName);
+        ImageView s0 = findViewById(R.id.star0);
+        ImageView s1 = findViewById(R.id.star1);
+        ImageView s2 = findViewById(R.id.star2);
+        ImageView s3 = findViewById(R.id.star3);
+        ImageView s4 = findViewById(R.id.star4);
+        ImageView[] arr = {s0, s1, s2, s3, s4};
+
+        for (int i = 0; i < goldStarCount+silverStarCount; i++) {
+            if (i < goldStarCount) {
+                arr[i].setImageResource(getResources().getIdentifier("@drawable/gold_star", null, getPackageName()));
+            } else {
+                arr[i].setImageResource(getResources().getIdentifier("@drawable/silver_star", null, getPackageName()));
+            }
+        }
+    playSound(choices);
     }
 
     public void playSound(String[] choices){
-        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier(String.format("@raw/%s_phoneme", lessonName), null, getPackageName()));
-        mp.start();
-        mp.setOnCompletionListener(mp1 -> {
-            mp1.release();
-            mp1 = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier(String.format("@raw/%s", choices[0]), null, getPackageName()));
+        int res = getResources().getIdentifier(String.format("@raw/%s_phoneme", lessonName), null, getPackageName());
+        if (res != 0) {
+            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), res);
+            mp.start();
+            mp.setOnCompletionListener(mp1 -> {
+                mp1.release();
+                mp1 = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier(String.format("@raw/%s", choices[0]), null, getPackageName()));
+                mp1.start();
+                mp1.setOnCompletionListener(mp2 -> {
+                    mp2.release();
+                    mp2 = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier(String.format("@raw/%s", choices[1]), null, getPackageName()));
+                    mp2.start();
+                    mp2.setOnCompletionListener(mp3 -> {
+                        mp3.release();
+                        mp3 = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier(String.format("@raw/%s", choices[2]), null, getPackageName()));
+                        mp3.start();
+                        mp3.setOnCompletionListener(MediaPlayer::release);
+                    });
+                });
+            });
+        } else {
+            MediaPlayer mp1 = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier(String.format("@raw/%s", choices[0]), null, getPackageName()));
             mp1.start();
             mp1.setOnCompletionListener(mp2 -> {
                 mp2.release();
@@ -284,14 +313,12 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                     mp3.setOnCompletionListener(MediaPlayer::release);
                 });
             });
-        });
+        }
     }
 
     @Override
     public void onClick(View v) {
-//        TextView result = findViewById(R.id.result);
         if (v.getId() == correctButtonId) {
-//            result.setText("correct");
             ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
             int goldStarCount = Model.getGoldStarCount(lessonName);
             if (attempts == 0) {
@@ -333,7 +360,6 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 Model.toSilverStar(lessonName);
                 nextQuestion();
             }
-//            result.setText("incorrect");
         }
     }
 
@@ -342,9 +368,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         while (Model.puzzleEarned.get(lessonName).contains(r)) {
             r = rand.nextInt(12);
         }
-        if (lessonName.equals("spr") || lessonName.equals("spl") || lessonName.equals("str")) {
-            ld.getDrawable(r).setAlpha(255);
-        }
+        ld.getDrawable(r).setAlpha(255);
         return r;
     }
 
