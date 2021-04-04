@@ -48,4 +48,9 @@ public class MainActivity extends AppCompatActivity {
     public void onBack(View view) {
         onBackPressed();
     }
+
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
+    }
 }

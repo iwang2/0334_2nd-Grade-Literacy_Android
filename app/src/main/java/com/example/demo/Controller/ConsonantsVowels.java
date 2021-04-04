@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConsonantsVowels extends AppCompatActivity implements TopicListAdapter.ItemClickListener {
+public class ConsonantsVowels extends AppCompatActivity implements ItemClickListener {
 
     TopicListAdapter adapter;
 
@@ -63,4 +63,8 @@ public class ConsonantsVowels extends AppCompatActivity implements TopicListAdap
         startActivity(bank);
     }
 
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
+    }
 }

@@ -128,7 +128,7 @@ public class Lesson extends AppCompatActivity {
                 break;
             case "oi": soundsList = Arrays.asList(R.raw.coin, R.raw.point, R.raw.choice);
                 break;
-            case "oo0": soundsList = Arrays.asList(R.raw.zoo, R.raw.moon); // Add Hoof
+            case "oo0": soundsList = Arrays.asList(R.raw.zoo, R.raw.moon, R.raw.hoof);
                 break;
             case "oo1": soundsList = Arrays.asList(R.raw.cook, R.raw.wood, R.raw.foot);
                 break;
@@ -145,15 +145,15 @@ public class Lesson extends AppCompatActivity {
                 break;
             case "ar1": soundsList = Arrays.asList(R.raw.bare, R.raw.mare, R.raw.hare);
                 break;
-            case "er": soundsList = Arrays.asList(R.raw.fern, R.raw.zipper);// ADD Tiger
+            case "er": soundsList = Arrays.asList(R.raw.fern, R.raw.zipper, R.raw.tiger);
                 break;
             case "ir": soundsList = Arrays.asList(R.raw.bird, R.raw.girl,R.raw.shirt);
                 break;
-            case "or0": soundsList = Arrays.asList(R.raw.corn, R.raw.orca); //ADD Horns
+            case "or0": soundsList = Arrays.asList(R.raw.corn, R.raw.orca, R.raw.horns);
                 break;
             case "or1": soundsList = Arrays.asList(R.raw.work, R.raw.worms,R.raw.tractor);
                 break;
-            case "ur": soundsList = Arrays.asList(R.raw.burn); //ADD Surf/Nurse
+            case "ur": soundsList = Arrays.asList(R.raw.burn,R.raw.surf, R.raw.nurse);
                 break;
 
             case "a": soundsList = Arrays.asList(R.raw.sofa, R.raw.zebra, R.raw.afraid);
@@ -275,6 +275,11 @@ public class Lesson extends AppCompatActivity {
     public void onBank(View view) {
         Intent bank = new Intent(Lesson.this, PiggyBank.class);
         startActivity(bank);
+    }
+
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
     }
 
 }

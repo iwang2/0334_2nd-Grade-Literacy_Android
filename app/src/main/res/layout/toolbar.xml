@@ -42,8 +42,8 @@
             android:layout_width="60dp"
             android:layout_height="55dp"
             android:layout_above="@+id/puzzle_button"
-            android:layout_centerInParent="true"
 
+            android:layout_centerVertical="true"
             android:layout_marginBottom="5dp"
             android:onClick="onBank"
             android:visibility="visible"
@@ -54,8 +54,9 @@
             android:layout_width="60dp"
             android:layout_height="55dp"
             android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
             android:layout_marginBottom="5dp"
-
+            android:onClick="onPuzzle"
             android:visibility="visible"
             app:srcCompat="@drawable/puzzle" />
 
@@ -83,7 +84,6 @@
             android:onClick="onQuiz"
             android:visibility="invisible"
             app:srcCompat="@drawable/quiz" />
-
 
     </RelativeLayout>
 

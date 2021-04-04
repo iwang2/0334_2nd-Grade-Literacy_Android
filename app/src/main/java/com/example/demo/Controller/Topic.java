@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Topic extends AppCompatActivity implements LessonListAdapter.ItemClickListener {
+public class Topic extends AppCompatActivity implements ItemClickListener {
     LessonListAdapter adapter;
     ImageButton quizButton;
     ImageButton repeatButton;
@@ -58,7 +58,6 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
-
         buttonVisibility();
     }
 
@@ -91,7 +90,10 @@ public class Topic extends AppCompatActivity implements LessonListAdapter.ItemCl
         quizIntent.putExtra("ifTopic", "true");
         quizIntent.putExtra("name", topicName);
         startActivity(quizIntent);
+    }
 
-
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
     }
 }

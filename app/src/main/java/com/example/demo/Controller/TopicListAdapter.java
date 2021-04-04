@@ -16,10 +16,6 @@ import com.example.demo.R;
 
 public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.ViewHolder> {
 
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
     private String[] topics;
     private int[] icons;
     private ItemClickListener listener;
@@ -78,8 +74,4 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.View
     void setClickListener(ItemClickListener listener) {
         this.listener = listener;
     }
-
-
-
-
 }

@@ -116,8 +116,4 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Vi
     void setClickListener(ItemClickListener listener) {
         this.listener = listener;
     }
-
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
 }
