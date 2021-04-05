@@ -64,6 +64,9 @@ public class PuzzleListAdapter extends RecyclerView.Adapter<PuzzleListAdapter.Vi
         CardView card = holder.getCard();
         if (Model.puzzleEarned.get(puzzles[position]).size() >= 12) {
             // set the correct image
+            if (puzzles[position].equals("spl")) {
+                holder.image.setImageResource(R.drawable.spl_composite);
+            }
             holder.image.setVisibility(View.VISIBLE);
         } else {
             holder.image.setVisibility(View.INVISIBLE);
