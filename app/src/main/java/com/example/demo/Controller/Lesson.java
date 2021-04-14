@@ -57,51 +57,175 @@ public class Lesson extends AppCompatActivity {
             exampleDescription.setText(examples[i]);
         }
         buttonVisibility();
-        new Handler().postDelayed(() -> playSound(soundsList), 1000);
+        new Handler().postDelayed(() -> playSound(soundsList), 500);
     }
-
+    MediaPlayer mp;
     public void playSound(List<Integer> soundsList){
-        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
-        mp.start();
-        mp.setOnCompletionListener(mp1 -> {
-            mp1.release();
-            mp1 = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
-            mp1.start();
-            mp1.setOnCompletionListener(mp2 -> {
-                mp2.release();
-                mp2 = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
-                mp2.start();
-                mp2.setOnCompletionListener(MediaPlayer::release);
+        if(soundsList.size() == 3){
+            mp = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
+            mp.start();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            mp.setOnCompletionListener(mp1 -> {
+                mp1.release();
+                mp1 = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
+                mp1.start();
+                mp1.setOnCompletionListener(mp2 -> {
+                    mp2.release();
+                    mp2 = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
+                    mp2.start();
+                    mp2.setOnCompletionListener(MediaPlayer::release);
+                });
             });
-        });
+        } else {
+            mp = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
+            mp.start();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            mp.setOnCompletionListener(mp1 -> {
+                mp1.release();
+                mp1 = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
+                mp1.start();
+                mp1.setOnCompletionListener(mp2 -> {
+                    mp2.release();
+                    mp2 = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
+                    mp2.start();
+                    //mp2.setOnCompletionListener(MediaPlayer::release);
+                    mp2.setOnCompletionListener(mp3 -> {
+                        mp3.release();
+                        mp3 = MediaPlayer.create(getApplicationContext(), soundsList.get(3));
+                        mp3.start();
+                        mp3.setOnCompletionListener(MediaPlayer::release);
+                    });
+                });
+            });
+        }
     }
 
+    public void onHome(View view) {
+        Intent home = new Intent(Lesson.this, MainActivity.class);
+        startActivity(home);
+    }
+
+    public void onBack(View view) {
+        Intent topic = new Intent(Lesson.this, Topic.class);
+        Intent previous = getIntent();
+        topic.putExtra("topicName", previous.getStringExtra("topicName"));
+        startActivity(topic);
+    }
+
+    public void onPrev(View view) {
+        Intent lessonIntent = getIntent();
+        int position = lessonIntent.getIntExtra("position", 0);
+        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
+        lessonNameString = position > 0 ? lessons[--position] : lessons[position];
+        lessonIntent.putExtra("lessonName", lessonNameString);
+        lessonIntent.putExtra("position", position);
+        startActivity(lessonIntent);
+    }
+
+    public void onNext(View view) {
+
+        Intent lessonIntent = getIntent();
+        int position = lessonIntent.getIntExtra("position", 0);
+        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
+        lessonNameString = position < lessons.length-1 ? lessons[++position] : lessons[position];
+        lessonIntent.putExtra("lessonName", lessonNameString);
+        lessonIntent.putExtra("position", position);
+        startActivity(lessonIntent);
+    }
+
+    public void buttonVisibility(){
+        quizButton = findViewById(R.id.quiz_button);
+        quizButton.setVisibility(View.VISIBLE);
+        repeatButton = findViewById(R.id.repeat_button);
+        repeatButton.setVisibility(View.VISIBLE);
+    }
+
+    public void onRepeat(View view){
+        playSound(soundsList);
+    }
+
+    public void onQuiz(View view) {
+        Intent quizIntent = new Intent(Lesson.this, Quiz.class);
+        quizIntent.putExtra("ifTopic", "false");
+        quizIntent.putExtra("name", lessonNameString);
+        startActivity(quizIntent);
+    }
+    public void onBank(View view) {
+        Intent bank = new Intent(Lesson.this, PiggyBank.class);
+        startActivity(bank);
+    }
+
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
+    }
+    public void onImageClickLesson(View view) {
+        if(soundsList.size() == 4){
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
+            imagePlayer.start();
+        }
+    }
+    public void onImageClickLeft(View view) {
+        if(soundsList.size() == 4) {
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
+            imagePlayer.start();
+        }else{
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
+            imagePlayer.start();
+        }
+    }
+    public void onImageClickMid(View view) {
+        if(soundsList.size() == 4) {
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
+            imagePlayer.start();
+        }else{
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
+            imagePlayer.start();
+        }
+    }
+    public void onImageClickRight(View view) {
+        if(soundsList.size() == 4) {
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(3));
+            imagePlayer.start();
+        }else{
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
+            imagePlayer.start();
+        }
+    }
     public List<Integer> lessonSounds(String lessonNameString){
         List<Integer> soundsList = new ArrayList<>();
         switch (lessonNameString) {
-            case "c0": soundsList = Arrays.asList(R.raw.cat, R.raw.canary, R.raw.cake);
+            case "c0": soundsList = Arrays.asList(R.raw.c0_phoneme,R.raw.cat, R.raw.canary, R.raw.cake);
                 break;
-            case "c1": soundsList = Arrays.asList(R.raw.celery, R.raw.face, R.raw.balance);
+            case "c1": soundsList = Arrays.asList(R.raw.c1_phoneme,R.raw.celery, R.raw.face, R.raw.balance);
                 break;
-            case "g0": soundsList = Arrays.asList(R.raw.goose, R.raw.goat, R.raw.gold);
+            case "g0": soundsList = Arrays.asList(R.raw.g0_phoneme,R.raw.goose, R.raw.goat, R.raw.gold);
                 break;
-            case "g1": soundsList = Arrays.asList(R.raw.frog, R.raw.plug, R.raw.bug);
+            case "g1": soundsList = Arrays.asList(R.raw.g1_phoneme,R.raw.frog, R.raw.plug, R.raw.bug);
                 break;
-            case "g2": soundsList = Arrays.asList(R.raw.giraffe, R.raw.gingerbread_man, R.raw.fridge);
-                break;
-
-            case "scr": soundsList = Arrays.asList(R.raw.scrub, R.raw.scratch, R.raw.scream);
-                break;
-            case "spl": soundsList = Arrays.asList(R.raw.split, R.raw.splat, R.raw.splash);
-                break;
-            case "spr": soundsList = Arrays.asList(R.raw.spread, R.raw.spruce, R.raw.sprain);
-                break;
-            case "str": soundsList = Arrays.asList(R.raw.strong, R.raw.straw, R.raw.string);
+            case "g2": soundsList = Arrays.asList(R.raw.g2_phoneme,R.raw.giraffe, R.raw.gingerbread_man, R.raw.fridge);
                 break;
 
-            case "gh": soundsList = Arrays.asList(R.raw.high, R.raw.right, R.raw.eight);
+            case "scr": soundsList = Arrays.asList(R.raw.scr_phoneme,R.raw.scrub, R.raw.scratch, R.raw.scream);
                 break;
-            case "kn": soundsList = Arrays.asList(R.raw.knot, R.raw.knee, R.raw.knit);
+            case "spl": soundsList = Arrays.asList(R.raw.spl_phoneme,R.raw.split, R.raw.splat, R.raw.splash);
+                break;
+            case "spr": soundsList = Arrays.asList(R.raw.spr_phoneme,R.raw.spread, R.raw.spruce, R.raw.sprain);
+                break;
+            case "str": soundsList = Arrays.asList(R.raw.str_phoneme,R.raw.strong, R.raw.straw, R.raw.string);
+                break;
+
+            case "gh": soundsList = Arrays.asList(R.raw.gh_phoneme,R.raw.high, R.raw.right, R.raw.eight);
+                break;
+            case "kn": soundsList = Arrays.asList(R.raw.knot, R.raw.knee, R.raw.knit); // Missing Phoneme
                 break;
             case "sc": soundsList = Arrays.asList(R.raw.scent, R.raw.scene, R.raw.science);
                 break;
@@ -220,66 +344,5 @@ public class Lesson extends AppCompatActivity {
         put("u", new String[] {"bug", "bus", "cut"});
 
     }};
-
-    public void onHome(View view) {
-        Intent home = new Intent(Lesson.this, MainActivity.class);
-        startActivity(home);
-    }
-
-    public void onBack(View view) {
-        Intent topic = new Intent(Lesson.this, Topic.class);
-        Intent previous = getIntent();
-        topic.putExtra("topicName", previous.getStringExtra("topicName"));
-        startActivity(topic);
-    }
-
-    public void onPrev(View view) {
-        Intent lessonIntent = getIntent();
-        int position = lessonIntent.getIntExtra("position", 0);
-        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
-        lessonNameString = position > 0 ? lessons[--position] : lessons[position];
-        lessonIntent.putExtra("lessonName", lessonNameString);
-        lessonIntent.putExtra("position", position);
-        startActivity(lessonIntent);
-    }
-
-    public void onNext(View view) {
-
-        Intent lessonIntent = getIntent();
-        int position = lessonIntent.getIntExtra("position", 0);
-        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
-        lessonNameString = position < lessons.length-1 ? lessons[++position] : lessons[position];
-        lessonIntent.putExtra("lessonName", lessonNameString);
-        lessonIntent.putExtra("position", position);
-        startActivity(lessonIntent);
-    }
-
-
-    public void buttonVisibility(){
-        quizButton = findViewById(R.id.quiz_button);
-        quizButton.setVisibility(View.VISIBLE);
-        repeatButton = findViewById(R.id.repeat_button);
-        repeatButton.setVisibility(View.VISIBLE);
-    }
-
-    public void onRepeat(View view){
-        playSound(soundsList);
-    }
-
-    public void onQuiz(View view) {
-        Intent quizIntent = new Intent(Lesson.this, Quiz.class);
-        quizIntent.putExtra("ifTopic", "false");
-        quizIntent.putExtra("name", lessonNameString);
-        startActivity(quizIntent);
-    }
-    public void onBank(View view) {
-        Intent bank = new Intent(Lesson.this, PiggyBank.class);
-        startActivity(bank);
-    }
-
-    public void onPuzzle(View view) {
-        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
-        startActivity(intent);
-    }
 
 }

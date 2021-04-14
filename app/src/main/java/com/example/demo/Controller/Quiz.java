@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
@@ -275,7 +276,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 arr[i].setImageResource(getResources().getIdentifier("@drawable/silver_star", null, getPackageName()));
             }
         }
-    playSound(choices);
+        new Handler().postDelayed(() -> playSound(choices), 1000);
     }
 
     public void playSound(String[] choices){
@@ -286,6 +287,11 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             mp.setOnCompletionListener(mp1 -> {
                 mp1.release();
                 mp1 = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier(String.format("@raw/%s", choices[0]), null, getPackageName()));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 mp1.start();
                 mp1.setOnCompletionListener(mp2 -> {
                     mp2.release();
