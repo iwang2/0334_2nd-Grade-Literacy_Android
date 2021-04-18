@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 import Model.Model;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,7 +24,7 @@ public class PiggyBank extends AppCompatActivity {
         int[] coinsValue = new int[5];
         int[] coinsNum = new int[5];
         int count = 0;
-        int coins = Model.getCoins();
+        int coins = loadCoin();
         if (coins / 250 >= 1) {
             coinsValue[count] = 250;
             coinsNum[count] = coins / 250;
@@ -66,6 +67,11 @@ public class PiggyBank extends AppCompatActivity {
         leftCoinText.setText(String.valueOf(coins));
         spentCoinText = findViewById(R.id.spentCoinText);
         spentCoinText.setText("0");
+    }
+
+    public int loadCoin() {
+        SharedPreferences sp = getSharedPreferences("coin", MODE_PRIVATE);
+        return sp.getInt("coin", 0);
     }
 
     public void onHome(View view) {
