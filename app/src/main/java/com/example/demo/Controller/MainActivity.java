@@ -34,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
         Model.addCoins(sp.getInt("coin", 0));
 
         SharedPreferences sp2 = getSharedPreferences("coin", MODE_PRIVATE);
-
+        Map<String, ?> allCoins = sp2.getAll();
+        for (Map.Entry<String, ?> entry : allCoins.entrySet()) {
+              Model.setCoinsFromMap(entry.getKey(), Integer.parseInt(entry.getValue().toString()));
+        }
 
         SharedPreferences sp3 = getSharedPreferences("puzzle", MODE_PRIVATE);
         Map<String, ?> allEntries = sp3.getAll();
@@ -46,6 +49,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
+        SharedPreferences sp4 = getSharedPreferences("goldStar", MODE_PRIVATE);
+        Map<String, ?> goldCoinEntries = sp4.getAll();
+        System.out.println(goldCoinEntries);
+        for (Map.Entry<String, ?> entry : goldCoinEntries.entrySet()) {
+            Model.setGoldStar(entry.getKey(), Integer.parseInt(entry.getValue().toString()));
+        }
+        SharedPreferences sp5 = getSharedPreferences("silverStar", MODE_PRIVATE);
+        Map<String, ?> silverCoinEntries = sp5.getAll();
+        for (Map.Entry<String, ?> entry : silverCoinEntries.entrySet()) {
+            Model.setSilverStar(entry.getKey(), Integer.parseInt(entry.getValue().toString()));
+        }
+
+
     }
 
     public void onConsonants(View view) {

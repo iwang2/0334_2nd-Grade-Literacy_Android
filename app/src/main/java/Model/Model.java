@@ -1,5 +1,8 @@
 package Model;
 
+
+import android.content.SharedPreferences;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,6 +33,13 @@ public class Model {
             stars.get(lesson)[1] = stars.get(lesson)[0];
             stars.get(lesson)[0] = 0;
         }
+    }
+
+    public static void setGoldStar(String lesson, int amount) {
+        stars.get(lesson)[0] = amount;
+    }
+    public static void setSilverStar(String lesson, int amount) {
+        stars.get(lesson)[1] = amount;
     }
 
     private static Map<String, Boolean> visited = new HashMap<String, Boolean>() {{
