@@ -57,114 +57,238 @@ public class Lesson extends AppCompatActivity {
             exampleDescription.setText(examples[i]);
         }
         buttonVisibility();
-        new Handler().postDelayed(() -> playSound(soundsList), 1000);
+        new Handler().postDelayed(() -> playSound(soundsList), 500);
     }
-
+    MediaPlayer mp;
     public void playSound(List<Integer> soundsList){
-        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
-        mp.start();
-        mp.setOnCompletionListener(mp1 -> {
-            mp1.release();
-            mp1 = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
-            mp1.start();
-            mp1.setOnCompletionListener(mp2 -> {
-                mp2.release();
-                mp2 = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
-                mp2.start();
-                mp2.setOnCompletionListener(MediaPlayer::release);
+        if(soundsList.size() == 3){
+            mp = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
+            mp.start();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            mp.setOnCompletionListener(mp1 -> {
+                mp1.release();
+                mp1 = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
+                mp1.start();
+                mp1.setOnCompletionListener(mp2 -> {
+                    mp2.release();
+                    mp2 = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
+                    mp2.start();
+                    mp2.setOnCompletionListener(MediaPlayer::release);
+                });
             });
-        });
+        } else {
+            mp = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
+            mp.start();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            mp.setOnCompletionListener(mp1 -> {
+                mp1.release();
+                mp1 = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
+                mp1.start();
+                mp1.setOnCompletionListener(mp2 -> {
+                    mp2.release();
+                    mp2 = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
+                    mp2.start();
+                    //mp2.setOnCompletionListener(MediaPlayer::release);
+                    mp2.setOnCompletionListener(mp3 -> {
+                        mp3.release();
+                        mp3 = MediaPlayer.create(getApplicationContext(), soundsList.get(3));
+                        mp3.start();
+                        mp3.setOnCompletionListener(MediaPlayer::release);
+                    });
+                });
+            });
+        }
     }
 
+    public void onHome(View view) {
+        Intent home = new Intent(Lesson.this, MainActivity.class);
+        startActivity(home);
+    }
+
+    public void onBack(View view) {
+        Intent topic = new Intent(Lesson.this, Topic.class);
+        Intent previous = getIntent();
+        topic.putExtra("topicName", previous.getStringExtra("topicName"));
+        startActivity(topic);
+    }
+
+    public void onPrev(View view) {
+        Intent lessonIntent = getIntent();
+        int position = lessonIntent.getIntExtra("position", 0);
+        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
+        lessonNameString = position > 0 ? lessons[--position] : lessons[position];
+        lessonIntent.putExtra("lessonName", lessonNameString);
+        lessonIntent.putExtra("position", position);
+        startActivity(lessonIntent);
+    }
+
+    public void onNext(View view) {
+
+        Intent lessonIntent = getIntent();
+        int position = lessonIntent.getIntExtra("position", 0);
+        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
+        lessonNameString = position < lessons.length-1 ? lessons[++position] : lessons[position];
+        lessonIntent.putExtra("lessonName", lessonNameString);
+        lessonIntent.putExtra("position", position);
+        startActivity(lessonIntent);
+    }
+
+    public void buttonVisibility(){
+        quizButton = findViewById(R.id.quiz_button);
+        quizButton.setVisibility(View.VISIBLE);
+        repeatButton = findViewById(R.id.repeat_button);
+        repeatButton.setVisibility(View.VISIBLE);
+    }
+
+    public void onRepeat(View view){
+        playSound(soundsList);
+    }
+
+    public void onQuiz(View view) {
+        Intent quizIntent = new Intent(Lesson.this, Quiz.class);
+        quizIntent.putExtra("ifTopic", "false");
+        quizIntent.putExtra("name", lessonNameString);
+        startActivity(quizIntent);
+    }
+    public void onBank(View view) {
+        Intent bank = new Intent(Lesson.this, PiggyBank.class);
+        startActivity(bank);
+    }
+
+    public void onPuzzle(View view) {
+        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
+        startActivity(intent);
+    }
+    public void onImageClickLesson(View view) {
+        if(soundsList.size() == 4){
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
+            imagePlayer.start();
+        }
+    }
+    public void onImageClickLeft(View view) {
+        if(soundsList.size() == 4) {
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
+            imagePlayer.start();
+        }else{
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(0));
+            imagePlayer.start();
+        }
+    }
+    public void onImageClickMid(View view) {
+        if(soundsList.size() == 4) {
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
+            imagePlayer.start();
+        }else{
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(1));
+            imagePlayer.start();
+        }
+    }
+    public void onImageClickRight(View view) {
+        if(soundsList.size() == 4) {
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(3));
+            imagePlayer.start();
+        }else{
+            MediaPlayer imagePlayer = MediaPlayer.create(getApplicationContext(), soundsList.get(2));
+            imagePlayer.start();
+        }
+    }
     public List<Integer> lessonSounds(String lessonNameString){
         List<Integer> soundsList = new ArrayList<>();
         switch (lessonNameString) {
-            case "c0": soundsList = Arrays.asList(R.raw.cat, R.raw.canary, R.raw.cake);
+            case "c0": soundsList = Arrays.asList(R.raw.c0_phoneme,R.raw.cat, R.raw.canary, R.raw.cake);
                 break;
-            case "c1": soundsList = Arrays.asList(R.raw.celery, R.raw.face, R.raw.balance);
+            case "c1": soundsList = Arrays.asList(R.raw.c1_phoneme,R.raw.celery, R.raw.face, R.raw.balance);
                 break;
-            case "g0": soundsList = Arrays.asList(R.raw.goose, R.raw.goat, R.raw.gold);
+            case "g0": soundsList = Arrays.asList(R.raw.g0_phoneme,R.raw.goose, R.raw.goat, R.raw.gold);
                 break;
-            case "g1": soundsList = Arrays.asList(R.raw.frog, R.raw.plug, R.raw.bug);
+            case "g1": soundsList = Arrays.asList(R.raw.g1_phoneme,R.raw.frog, R.raw.plug, R.raw.bug);
                 break;
-            case "g2": soundsList = Arrays.asList(R.raw.giraffe, R.raw.gingerbread_man, R.raw.fridge);
-                break;
-
-            case "scr": soundsList = Arrays.asList(R.raw.scrub, R.raw.scratch, R.raw.scream);
-                break;
-            case "spl": soundsList = Arrays.asList(R.raw.split, R.raw.splat, R.raw.splash);
-                break;
-            case "spr": soundsList = Arrays.asList(R.raw.spread, R.raw.spruce, R.raw.sprain);
-                break;
-            case "str": soundsList = Arrays.asList(R.raw.strong, R.raw.straw, R.raw.string);
+            case "g2": soundsList = Arrays.asList(R.raw.g2_phoneme,R.raw.giraffe, R.raw.gingerbread_man, R.raw.fridge);
                 break;
 
-            case "gh": soundsList = Arrays.asList(R.raw.high, R.raw.right, R.raw.eight);
+            case "scr": soundsList = Arrays.asList(R.raw.scr_phoneme,R.raw.scrub, R.raw.scratch, R.raw.scream);
                 break;
-            case "kn": soundsList = Arrays.asList(R.raw.knot, R.raw.knee, R.raw.knit);
+            case "spl": soundsList = Arrays.asList(R.raw.spl_phoneme,R.raw.split, R.raw.splat, R.raw.splash);
+                break;
+            case "spr": soundsList = Arrays.asList(R.raw.spr_phoneme,R.raw.spread, R.raw.spruce, R.raw.sprain);
+                break;
+            case "str": soundsList = Arrays.asList(R.raw.str_phoneme,R.raw.strong, R.raw.straw, R.raw.string);
+                break;
+
+            case "gh": soundsList = Arrays.asList(R.raw.gh_phoneme,R.raw.high, R.raw.right, R.raw.eight);
+                break;
+            case "kn": soundsList = Arrays.asList(R.raw.knot, R.raw.knee, R.raw.knit); // Missing Phoneme
                 break;
             case "sc": soundsList = Arrays.asList(R.raw.scent, R.raw.scene, R.raw.science);
                 break;
             case "wr": soundsList = Arrays.asList(R.raw.wrap, R.raw.write, R.raw.wrong);
                 break;
 
-            case "ai": soundsList = Arrays.asList(R.raw.tail, R.raw.nail, R.raw.rainbow);
+            case "ai": soundsList = Arrays.asList(R.raw.ai_phoneme,R.raw.tail, R.raw.nail, R.raw.rainbow);
                 break;
-            case "au": soundsList = Arrays.asList(R.raw.haul, R.raw.gauze, R.raw.faucet);
+            case "au": soundsList = Arrays.asList(R.raw.au_phoneme,R.raw.haul, R.raw.gauze, R.raw.faucet);
                 break;
-            case "aw": soundsList = Arrays.asList(R.raw.saw, R.raw.hawk, R.raw.paws);
+            case "aw": soundsList = Arrays.asList(R.raw.aw_phoneme,R.raw.saw, R.raw.hawk, R.raw.paws);
                 break;
-            case "ay": soundsList = Arrays.asList(R.raw.jay, R.raw.ray, R.raw.play);
+            case "ay": soundsList = Arrays.asList(R.raw.ay_phoneme,R.raw.jay, R.raw.ray, R.raw.play);
                 break;
-            case "ea0": soundsList = Arrays.asList(R.raw.eat, R.raw.beak, R.raw.leaf);
+            case "ea0": soundsList = Arrays.asList(R.raw.ea0_phoneme,R.raw.eat, R.raw.beak, R.raw.leaf);
                 break;
-            case "ea1": soundsList = Arrays.asList(R.raw.head, R.raw.bear, R.raw.pear);
+            case "ea1": soundsList = Arrays.asList(R.raw.ea1_phoneme,R.raw.head, R.raw.bear, R.raw.pear);
                 break;
-            case "ee": soundsList = Arrays.asList(R.raw.bee, R.raw.tree, R.raw.jeep);
+            case "ee": soundsList = Arrays.asList(R.raw.ee_phoneme,R.raw.bee, R.raw.tree, R.raw.jeep);
                 break;
-            case "ew": soundsList = Arrays.asList(R.raw.flew, R.raw.blew, R.raw.chew);
+            case "ew": soundsList = Arrays.asList(R.raw.ew_phoneme,R.raw.flew, R.raw.blew, R.raw.chew);
                 break;
-            case "oa": soundsList = Arrays.asList(R.raw.goat, R.raw.boat, R.raw.coat);
+            case "oa": soundsList = Arrays.asList(R.raw.oa_phoneme,R.raw.goat, R.raw.boat, R.raw.coat);
                 break;
-            case "oi": soundsList = Arrays.asList(R.raw.coin, R.raw.point, R.raw.choice);
+            case "oi": soundsList = Arrays.asList(R.raw.oi_phoneme,R.raw.coin, R.raw.point, R.raw.choice);
                 break;
-            case "oo0": soundsList = Arrays.asList(R.raw.zoo, R.raw.moon, R.raw.hoof);
+            case "oo0": soundsList = Arrays.asList(R.raw.oo0_phoneme,R.raw.zoo, R.raw.moon, R.raw.hoof);
                 break;
             case "oo1": soundsList = Arrays.asList(R.raw.cook, R.raw.wood, R.raw.foot);
                 break;
-            case "ou": soundsList = Arrays.asList(R.raw.house, R.raw.mouth, R.raw.proud);
+            case "ou": soundsList = Arrays.asList(R.raw.ou_phoneme,R.raw.house, R.raw.mouth, R.raw.proud);
                 break;
-            case "ow0": soundsList = Arrays.asList(R.raw.blow, R.raw.snow, R.raw.throw_);
+            case "ow0": soundsList = Arrays.asList(R.raw.ow0_phoneme,R.raw.blow, R.raw.snow, R.raw.throw_);
                 break;
-            case "ow1": soundsList = Arrays.asList(R.raw.owl, R.raw.cow, R.raw.town);
+            case "ow1": soundsList = Arrays.asList(R.raw.ow1_phoneme,R.raw.owl, R.raw.cow, R.raw.town);
                 break;
-            case "oy": soundsList = Arrays.asList(R.raw.boy, R.raw.toys, R.raw.oyster);
-                break;
-
-            case "ar0": soundsList = Arrays.asList(R.raw.arm, R.raw.stars, R.raw.barn);
-                break;
-            case "ar1": soundsList = Arrays.asList(R.raw.bare, R.raw.mare, R.raw.hare);
-                break;
-            case "er": soundsList = Arrays.asList(R.raw.fern, R.raw.zipper, R.raw.tiger);
-                break;
-            case "ir": soundsList = Arrays.asList(R.raw.bird, R.raw.girl,R.raw.shirt);
-                break;
-            case "or0": soundsList = Arrays.asList(R.raw.corn, R.raw.orca, R.raw.horns);
-                break;
-            case "or1": soundsList = Arrays.asList(R.raw.work, R.raw.worms,R.raw.tractor);
-                break;
-            case "ur": soundsList = Arrays.asList(R.raw.burn,R.raw.surf, R.raw.nurse);
+            case "oy": soundsList = Arrays.asList(R.raw.oy_phoneme,R.raw.boy, R.raw.toys, R.raw.oyster);
                 break;
 
-            case "a": soundsList = Arrays.asList(R.raw.sofa, R.raw.zebra, R.raw.afraid);
+            case "ar0": soundsList = Arrays.asList(R.raw.ar0_phoneme,R.raw.arm, R.raw.stars, R.raw.barn);
                 break;
-            case "e": soundsList = Arrays.asList(R.raw.camel, R.raw.oven, R.raw.kitten);
+            case "ar1": soundsList = Arrays.asList(R.raw.ar1_phoneme,R.raw.bare, R.raw.mare, R.raw.hare);
                 break;
-            case "i": soundsList = Arrays.asList(R.raw.rabbit, R.raw.pencil, R.raw.robin);
+            case "er": soundsList = Arrays.asList(R.raw.er_phoneme,R.raw.fern, R.raw.zipper, R.raw.tiger);
                 break;
-            case "o": soundsList = Arrays.asList(R.raw.lion, R.raw.oven, R.raw.wagon);
+            case "ir": soundsList = Arrays.asList(R.raw.ir_phoneme,R.raw.bird, R.raw.girl,R.raw.shirt);
                 break;
-            case "u": soundsList = Arrays.asList(R.raw.bug, R.raw.bus, R.raw.cut);
+            case "or0": soundsList = Arrays.asList(R.raw.or0_phoneme,R.raw.corn, R.raw.orca, R.raw.horns);
+                break;
+            case "or1": soundsList = Arrays.asList(R.raw.or1_phoneme,R.raw.work, R.raw.worms,R.raw.tractor);
+                break;
+            case "ur": soundsList = Arrays.asList(R.raw.ur_phoneme,R.raw.burn,R.raw.surf, R.raw.nurse);
+                break;
+
+            case "a": soundsList = Arrays.asList(R.raw.a_phoneme,R.raw.sofa, R.raw.zebra, R.raw.afraid);
+                break;
+            case "e": soundsList = Arrays.asList(R.raw.e_phoneme,R.raw.camel, R.raw.oven, R.raw.kitten);
+                break;
+            case "i": soundsList = Arrays.asList(R.raw.i_phoneme,R.raw.rabbit, R.raw.pencil, R.raw.robin);
+                break;
+            case "o": soundsList = Arrays.asList(R.raw.o_phoneme,R.raw.lion, R.raw.oven, R.raw.wagon);
+                break;
+            case "u": soundsList = Arrays.asList(R.raw.u_phoneme,R.raw.bug, R.raw.bus, R.raw.cut);
                 break;
         }
         return soundsList;
@@ -220,66 +344,5 @@ public class Lesson extends AppCompatActivity {
         put("u", new String[] {"bug", "bus", "cut"});
 
     }};
-
-    public void onHome(View view) {
-        Intent home = new Intent(Lesson.this, MainActivity.class);
-        startActivity(home);
-    }
-
-    public void onBack(View view) {
-        Intent topic = new Intent(Lesson.this, Topic.class);
-        Intent previous = getIntent();
-        topic.putExtra("topicName", previous.getStringExtra("topicName"));
-        startActivity(topic);
-    }
-
-    public void onPrev(View view) {
-        Intent lessonIntent = getIntent();
-        int position = lessonIntent.getIntExtra("position", 0);
-        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
-        lessonNameString = position > 0 ? lessons[--position] : lessons[position];
-        lessonIntent.putExtra("lessonName", lessonNameString);
-        lessonIntent.putExtra("position", position);
-        startActivity(lessonIntent);
-    }
-
-    public void onNext(View view) {
-
-        Intent lessonIntent = getIntent();
-        int position = lessonIntent.getIntExtra("position", 0);
-        String[] lessons = lessonIntent.getStringArrayExtra("lessons");
-        lessonNameString = position < lessons.length-1 ? lessons[++position] : lessons[position];
-        lessonIntent.putExtra("lessonName", lessonNameString);
-        lessonIntent.putExtra("position", position);
-        startActivity(lessonIntent);
-    }
-
-
-    public void buttonVisibility(){
-        quizButton = findViewById(R.id.quiz_button);
-        quizButton.setVisibility(View.VISIBLE);
-        repeatButton = findViewById(R.id.repeat_button);
-        repeatButton.setVisibility(View.VISIBLE);
-    }
-
-    public void onRepeat(View view){
-        playSound(soundsList);
-    }
-
-    public void onQuiz(View view) {
-        Intent quizIntent = new Intent(Lesson.this, Quiz.class);
-        quizIntent.putExtra("ifTopic", "false");
-        quizIntent.putExtra("name", lessonNameString);
-        startActivity(quizIntent);
-    }
-    public void onBank(View view) {
-        Intent bank = new Intent(Lesson.this, PiggyBank.class);
-        startActivity(bank);
-    }
-
-    public void onPuzzle(View view) {
-        Intent intent = new Intent(getApplicationContext(), PuzzleList.class);
-        startActivity(intent);
-    }
 
 }

@@ -1,18 +1,11 @@
 package com.example.demo.Controller;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,12 +13,9 @@ import android.widget.TextView;
 import Model.Model;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demo.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -88,7 +78,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             "artist", "gossip", "muffins_", "nostril", "pencil", "rabbit", "robin", "tennis",
             "glove", "lion", "love", "monkey", "mother", "oven", "shovel", "wagon",
             "brush", "bucket", "bug", "bus", "cut", "jump", "muzzle", "trunk"
-        ));
+    ));
 
     Map<String, Set<String>> lessonToAnswers = new HashMap<String, Set<String>>() {{
         put("c0", new HashSet<>(Arrays.asList("cake", "canary", "candy", "car", "cat", "cow", "cub", "cut")));
@@ -275,7 +265,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 arr[i].setImageResource(getResources().getIdentifier("@drawable/silver_star", null, getPackageName()));
             }
         }
-    playSound(choices);
+        playSound(choices);
     }
 
     public void playSound(String[] choices){
@@ -350,6 +340,8 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 }
                 Model.toSilverStar(lessonName);
             }
+            saveTotalCoin(Model.getCoins());
+            savePuzzleAndCoin();
             nextQuestion();
         } else {
             attempts++;
@@ -409,5 +401,31 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         quizButton.setVisibility(View.INVISIBLE);
         repeatButton = findViewById(R.id.repeat_button);
         repeatButton.setVisibility(View.VISIBLE);
+    }
+
+    private void saveTotalCoin(int coins) {
+        SharedPreferences sp = getSharedPreferences("totalCoin", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("coin", coins);
+        editor.apply();
+    }
+
+    private void savePuzzleAndCoin() {
+        ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 16; i++) {
+            if (al.contains(i)) {
+                sb.append('1');
+            } else {
+                sb.append('0');
+            }
+        }
+        SharedPreferences sp = getSharedPreferences("puzzle", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(lessonName, sb.toString());
+
+        SharedPreferences sp2 = getSharedPreferences("coin", MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = sp2.edit();
+        editor2.putInt(lessonName, Model.getCoinsFromMap(lessonName));
     }
 }
