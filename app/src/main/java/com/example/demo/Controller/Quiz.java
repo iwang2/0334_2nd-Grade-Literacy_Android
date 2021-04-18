@@ -340,7 +340,8 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 }
                 Model.toSilverStar(lessonName);
             }
-            saveCoin(Model.getCoins());
+            saveTotalCoin(Model.getCoins());
+            savePuzzleAndCoin();
             nextQuestion();
         } else {
             attempts++;
@@ -402,10 +403,29 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         repeatButton.setVisibility(View.VISIBLE);
     }
 
-    public void saveCoin(int coins) {
-        SharedPreferences sp = getSharedPreferences("coin", MODE_PRIVATE);
+    private void saveTotalCoin(int coins) {
+        SharedPreferences sp = getSharedPreferences("totalCoin", MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("coin", coins);
         editor.apply();
+    }
+
+    private void savePuzzleAndCoin() {
+        ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 16; i++) {
+            if (al.contains(i)) {
+                sb.append('1');
+            } else {
+                sb.append('0');
+            }
+        }
+        SharedPreferences sp = getSharedPreferences("puzzle", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(lessonName, sb.toString());
+
+        SharedPreferences sp2 = getSharedPreferences("coin", MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = sp2.edit();
+        editor2.putInt(lessonName, Model.getCoinsFromMap(lessonName));
     }
 }
