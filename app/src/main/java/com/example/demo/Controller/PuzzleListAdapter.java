@@ -63,11 +63,23 @@ public class PuzzleListAdapter extends RecyclerView.Adapter<PuzzleListAdapter.Vi
 
         CardView card = holder.getCard();
         if (Model.puzzleEarned.get(puzzles[position]).size() >= 12) {
-            // set the correct image
-            if (puzzles[position].equals("spl")) {
-                holder.image.setImageResource(R.drawable.spl_composite);
+            int id = view.getContext().getResources().getIdentifier(
+                    "@drawable/" + puzzles[position] + "_complete",
+                    null,
+                    view.getContext().getPackageName());
+            if (id != 0) {
+                holder.image.setImageResource(id);
+                holder.image.setVisibility(View.VISIBLE);
+            } else {
+                holder.image.setVisibility(View.INVISIBLE);
+                String lesson = puzzles[position];
+                int i = lesson.length();
+                while (i > 0 && Character.isDigit(lesson.charAt(i-1))) {
+                    i--;
+                }
+                holder.getTextView().setText(lesson.substring(0, i));
+                holder.getTextView().append("\ncomplete");
             }
-            holder.image.setVisibility(View.VISIBLE);
         } else {
             holder.image.setVisibility(View.INVISIBLE);
             String lesson = puzzles[position];

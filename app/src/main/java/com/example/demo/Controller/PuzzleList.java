@@ -40,6 +40,8 @@ public class PuzzleList extends AppCompatActivity implements ItemClickListener {
                 lessonToTopic.put(lesson, topic);
             }
         }
+
+        // put completed puzzles first
         List<String> alphabetic = new ArrayList<>(Model.puzzleEarned.keySet());
         Collections.sort(alphabetic);
         List<String> completed = new ArrayList<>();
@@ -53,7 +55,7 @@ public class PuzzleList extends AppCompatActivity implements ItemClickListener {
         }
         completed.addAll(not);
         String[] puzzles = completed.toArray(new String[Model.puzzleEarned.size()]);
-        //Arrays.sort(puzzles);
+
         adapter = new PuzzleListAdapter(puzzles, recyclerView);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
