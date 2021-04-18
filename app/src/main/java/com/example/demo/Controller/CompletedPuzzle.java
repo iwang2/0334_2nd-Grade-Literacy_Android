@@ -217,10 +217,9 @@ public class CompletedPuzzle extends AppCompatActivity {
                 "\n" +
                 "He would if he could,\n" +
                 "But he can't, so he won't!");
-        put("u", "Around the bush, Willie,\n" +
-                "Around the bee hive.\n" +
-                "Around the bush, Willie,\n" +
-                "I'll meet you alive.");
+        put("u", "Rub a dub dub\n" +
+                "Three men in a tub,\n" +
+                "And who do you think they be?");
 
     }};
 

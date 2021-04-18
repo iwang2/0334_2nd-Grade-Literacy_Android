@@ -12,8 +12,12 @@ import com.example.demo.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import Model.Model;
 
@@ -36,8 +40,20 @@ public class PuzzleList extends AppCompatActivity implements ItemClickListener {
                 lessonToTopic.put(lesson, topic);
             }
         }
-        String[] puzzles = Model.puzzleEarned.keySet().toArray(new String[Model.puzzleEarned.size()]);
-        Arrays.sort(puzzles);
+        List<String> alphabetic = new ArrayList<>(Model.puzzleEarned.keySet());
+        Collections.sort(alphabetic);
+        List<String> completed = new ArrayList<>();
+        List<String> not = new ArrayList<>();
+        for (String puzzle: alphabetic) {
+            if (Model.puzzleEarned.get(puzzle).size() >= 12) {
+                completed.add(puzzle);
+            } else {
+                not.add(puzzle);
+            }
+        }
+        completed.addAll(not);
+        String[] puzzles = completed.toArray(new String[Model.puzzleEarned.size()]);
+        //Arrays.sort(puzzles);
         adapter = new PuzzleListAdapter(puzzles, recyclerView);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
