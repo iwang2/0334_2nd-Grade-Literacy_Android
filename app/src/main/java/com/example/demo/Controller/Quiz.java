@@ -1,18 +1,11 @@
 package com.example.demo.Controller;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,12 +13,9 @@ import android.widget.TextView;
 import Model.Model;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demo.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -350,6 +340,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 }
                 Model.toSilverStar(lessonName);
             }
+            saveCoin(Model.getCoins());
             nextQuestion();
         } else {
             attempts++;
@@ -409,5 +400,12 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         quizButton.setVisibility(View.INVISIBLE);
         repeatButton = findViewById(R.id.repeat_button);
         repeatButton.setVisibility(View.VISIBLE);
+    }
+
+    public void saveCoin(int coins) {
+        SharedPreferences sp = getSharedPreferences("coin", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("coin", coins);
+        editor.apply();
     }
 }
