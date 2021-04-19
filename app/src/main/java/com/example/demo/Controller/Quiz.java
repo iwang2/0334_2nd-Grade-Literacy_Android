@@ -197,7 +197,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         ArrayList<Integer> al = Model.puzzleEarned.get(lessonName);
         if (al.size() == 12) {
 
-            int res = getResources().getIdentifier(String.format("@drawable/%s_composite", lessonName), null, getPackageName());
+            int res = getResources().getIdentifier(String.format("@drawable/%s_complete", lessonName), null, getPackageName());
             p.setImageResource(getResources().getIdentifier("@drawable/generic_composite", null, getPackageName()));
             if (res != 0) {
                 p.setImageResource(res);
