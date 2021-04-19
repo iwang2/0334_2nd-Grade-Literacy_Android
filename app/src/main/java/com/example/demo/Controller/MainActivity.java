@@ -30,17 +30,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        SharedPreferences sp = getSharedPreferences("totalCoin", MODE_PRIVATE);
-        Model.addCoins(sp.getInt("coin", 0));
+        SharedPreferences sp_v = getSharedPreferences("visited", MODE_PRIVATE);
+        Map<String, ?> visitedEntries = sp_v.getAll();
+        for (Map.Entry<String, ?> entry : visitedEntries.entrySet()) {
+            Model.visit(entry.getKey());
+        }
 
-        SharedPreferences sp2 = getSharedPreferences("coin", MODE_PRIVATE);
-        Map<String, ?> allCoins = sp2.getAll();
+        SharedPreferences sp_tc = getSharedPreferences("totalCoin", MODE_PRIVATE);
+        Model.addCoins(sp_tc.getInt("coin", 0));
+
+        SharedPreferences sp_c = getSharedPreferences("coin", MODE_PRIVATE);
+        Map<String, ?> allCoins = sp_c.getAll();
         for (Map.Entry<String, ?> entry : allCoins.entrySet()) {
               Model.setCoinsFromMap(entry.getKey(), Integer.parseInt(entry.getValue().toString()));
         }
 
-        SharedPreferences sp3 = getSharedPreferences("puzzle", MODE_PRIVATE);
-        Map<String, ?> allEntries = sp3.getAll();
+        SharedPreferences sp_p = getSharedPreferences("puzzle", MODE_PRIVATE);
+        Map<String, ?> allEntries = sp_p.getAll();
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             char [] chars = entry.getValue().toString().toCharArray();
             for (int i = 0; i < 16; i++) {
@@ -50,14 +56,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        SharedPreferences sp4 = getSharedPreferences("goldStar", MODE_PRIVATE);
-        Map<String, ?> goldCoinEntries = sp4.getAll();
+        SharedPreferences sp_g = getSharedPreferences("goldStar", MODE_PRIVATE);
+        Map<String, ?> goldCoinEntries = sp_g.getAll();
         System.out.println(goldCoinEntries);
         for (Map.Entry<String, ?> entry : goldCoinEntries.entrySet()) {
             Model.setGoldStar(entry.getKey(), Integer.parseInt(entry.getValue().toString()));
         }
-        SharedPreferences sp5 = getSharedPreferences("silverStar", MODE_PRIVATE);
-        Map<String, ?> silverCoinEntries = sp5.getAll();
+        SharedPreferences sp_s = getSharedPreferences("silverStar", MODE_PRIVATE);
+        Map<String, ?> silverCoinEntries = sp_s.getAll();
         for (Map.Entry<String, ?> entry : silverCoinEntries.entrySet()) {
             Model.setSilverStar(entry.getKey(), Integer.parseInt(entry.getValue().toString()));
         }

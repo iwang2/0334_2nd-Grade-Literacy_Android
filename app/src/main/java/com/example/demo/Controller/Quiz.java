@@ -208,6 +208,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 Intent completedPz = new Intent(Quiz.this, CompletedPuzzle.class);
                 completedPz.putExtra("lessonName", lessonName);
                 Model.visit(lessonName);
+                saveVisited();
                 startActivity(completedPz);
             }
 
@@ -403,6 +404,13 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         quizButton.setVisibility(View.INVISIBLE);
         repeatButton = findViewById(R.id.repeat_button);
         repeatButton.setVisibility(View.VISIBLE);
+    }
+
+    private void saveVisited() {
+        SharedPreferences sp = getSharedPreferences("visited", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean(lessonName, true);
+        editor.apply();
     }
 
     private void saveTotalCoin(int coins) {
