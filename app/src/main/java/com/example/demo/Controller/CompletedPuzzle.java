@@ -233,7 +233,7 @@ public class CompletedPuzzle extends AppCompatActivity {
         Intent lessonIntent = getIntent();
         String lessonName = lessonIntent.getStringExtra("lessonName");
         poem.setText(poemBank.get(lessonName));
-        int res = getResources().getIdentifier(String.format("@drawable/%s_composite", lessonName), null, getPackageName());
+        int res = getResources().getIdentifier(String.format("@drawable/%s_complete", lessonName), null, getPackageName());
         if (res != 0) {
             puzzle.setImageResource(res);
         } else {
@@ -245,6 +245,7 @@ public class CompletedPuzzle extends AppCompatActivity {
         Intent home = new Intent(CompletedPuzzle.this, MainActivity.class);
         startActivity(home);
     }
+
     public void onBack(View view) { onBackPressed(); }
 
     public void onBank(View view) {
